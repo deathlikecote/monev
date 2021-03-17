@@ -1,0 +1,226 @@
+/* 
+*  CSS TABLE OF CONTENTS
+*   
+*  1.0 - General
+*  2.0 - Login Container
+*  3.0 - Left Content
+*  4.0 - Right Content
+*    4.1 - Create Account
+*    4.2 - Login
+*/
+
+/*** 1.0 - General ***/
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&display=swap);
+
+body, html{
+	font-family: 'Open Sans', sans-serif !important;
+	scroll-behavior: smooth;
+	height: 100%;
+  color: grey;
+  background: #EEEEEE;
+}
+
+/* This is transition effect for form elements  */
+textarea, 
+textarea.form-control, 
+input.form-control, 
+input[type=text], 
+input[type=password], 
+input[type=email], 
+input[type=number], 
+[type=text].form-control, 
+[type=password].form-control, 
+[type=email].form-control, 
+[type=tel].form-control{
+  font-size: 0.8em;
+  transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -moz-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+}
+
+/* This is remove blue highlight or line effect form elements when hover and focus */
+textarea:hover, 
+textarea.form-control:hover, 
+input.form-control:hover, 
+input[type=text]:hover, 
+input[type=password]:hover, 
+input[type=email]:hover, 
+input[type=number]:hover, 
+[type=text].form-control:hover, 
+[type=password].form-control:hover, 
+[type=email].form-control:hover, 
+[type=tel].form-control:hover, 
+[contenteditable].form-control:hover,
+textarea:focus, 
+textarea.form-control:focus, 
+input.form-control:focus, 
+input[type=text]:focus, 
+input[type=password]:focus, 
+input[type=email]:focus, 
+input[type=number]:focus, 
+[type=text].form-control:focus, 
+[type=password].form-control:focus, 
+[type=email].form-control:focus, 
+[type=tel].form-control:focus, 
+[contenteditable].form-control:focus {
+  -webkit-box-shadow: inset 0 -1px 0 transparent;
+  box-shadow: inset 0 -1px 0 transparent;
+  outline: none;
+  border-color: rgba(23,162,184, 1);
+}
+
+a, a:hover {
+  text-decoration: none;
+}
+
+@media (max-width: 500px){
+  html{
+    font-size: 0.9rem;
+  } 
+}
+
+
+/*** 2.0 - Login Container ***/
+
+#login-container{
+  position: relative;
+  height: auto;
+  overflow: hidden;
+  max-width: 1080px;
+  border-radius: 10px;
+  box-shadow: 0px 20px 50px rgba(0,0,0,0.2);
+}
+
+
+/*** 3.0 - Left Content ***/
+
+#left-content{
+  overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+/* Change left content background image here*/
+/*#left-content::before{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../img/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  animation: zoomin 60s .1s linear forwards;
+  -webkit-animation: zoomin 60s .1s linear forwards;
+  -moz-animation: zoomin 60s .1s linear forwards;
+  -o-animation: zoomin 60s .1s linear forwards;
+}*/
+
+/* Change left content background or filter color here*/
+#left-content > .row{
+  /*background: rgba(23,162,184, 0.8);*/
+  position: relative;
+  z-index: 1;
+  transition: all .7s ease-in-out;
+}
+
+/* This is zoom in animation for left content background */
+@-webkit-keyframes zoomin{
+  100%{ transform: scale(1.6); }
+}
+
+/*** 4.0 - Right Content ***/
+
+#right-content{
+  position: relative;
+}
+
+#create-account, #log-in{
+  transition: transform .7s ease-in-out;
+}
+
+/* This is logo width */
+.logo{
+  width: 170px;
+}
+
+/* This is checkbox style */
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before{
+  background-color: rgba(0,123,255,1);
+  -webkit-box-shadow: 0 0 0 1px transparent;
+  box-shadow: 0 0 0 1px transparent;
+}
+
+/* This is label style for checkbox */
+label.custom-control-label{
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+}
+
+label.custom-control-label::after{
+  -webkit-box-shadow: 0 0 0 5px transparent;
+  box-shadow: 0 0 0 5px transparent;
+}
+
+/* This is class for trigger "entrance" animation */
+.entrance{
+  animation: entrance 1s .1s ease-in-out;
+  -webkit-animation: entrance 1s .1s ease-in-out;
+  -o-animation: entrance 1s .1s ease-in-out;
+  -moz-animation: entrance 1s .1s ease-in-out;
+  -ms-animation: entrance 1s .1s ease-in-out;
+}
+
+/* This is slide to left animation */
+.slide-left{
+  transform: translateX(0%);
+}
+
+/* This is entrance animation*/
+@keyframes entrance{
+  0%{transform: translateX(0);}
+  30%{transform: translateX(10%);}
+  70%{transform: translateX(10%);}
+  100%{transform: translateX(0);}
+}
+
+@-webkit-keyframes entrance{
+  0%{transform: translateX(0);}
+  30%{transform: translateX(10%);}
+  70%{transform: translateX(10%);}
+  100%{transform: translateX(0);}
+}
+
+
+/*** 4.1 - Create Account ***/
+
+/* This is change placeholder color*/
+#create-account ::-webkit-input-placeholder {color:#f8f9fa !important;}
+
+#create-account :-moz-placeholder {color:#f8f9fa !important;opacity: 1;}
+
+#create-account ::-moz-placeholder {color:#f8f9fa !important;opacity: 1;}
+
+#create-account :-ms-input-placeholder {color:#f8f9fa !important;}
+
+#create-account ::-ms-input-placeholder {color:#f8f9fa !important;}
+
+#create-account ::placeholder {color: #f8f9fa !important;}
+
+
+/*** 4.2 - Login ***/
+
+/* This is slide to right animation */
+.slide-right{
+  transform: translateX(100%);
+}
+
+

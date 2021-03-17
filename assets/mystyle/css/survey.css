@@ -1,0 +1,13 @@
+body{
+	font-size: 12pt
+}
+
+ul.qustions{
+	padding: 0;
+	list-style: none;
+	list-style-position: outside;
+}
+
+ul.qustions li{
+	padding-left: 3.5em;
+}
