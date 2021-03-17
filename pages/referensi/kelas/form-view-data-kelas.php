@@ -5,11 +5,40 @@
 			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
 			}
+			$wheres = '1';
+			$cKodeprodi = '';
+			$ckelas = '';
+			$cStatus = '';
 			$_SESSION['pesan'] ="";
+
 			if(isset($_POST['perta'])){
 				$pertax = $_POST['perta'];
 			}else{
 				$pertax = $_SESSION['perta'];
+			}
+
+			$wheres .= " AND perta ='".$pertax."'";
+
+			if(isset($_POST['kdprodi'])){
+				if(!empty($_POST['kdprodi'])){
+					$cKodeprodi = $_POST['kdprodi'];
+					$wheres .= " AND kdprodi ='".$_POST['kdprodi']."'";
+				}
+				
+			}
+
+			if(isset($_POST['kelas'])){
+				if(!empty($_POST['kelas'])){
+					$ckelas = $_POST['kelas'];
+					$wheres .= " AND kelas ='".$_POST['kelas']."'";
+				}
+			}
+
+			if(isset($_POST['status'])){
+				if(!empty($_POST['status'])){
+					$cStatus = $_POST['status'];
+					$wheres .= " AND status ='".$_POST['status']."'";
+				}
 			}
 		?>
 	</li>
@@ -54,7 +83,7 @@
 <?php
 	
 	include "../config/koneksi.php";
-	$tampilUsr	=mysqli_query($Open,"SELECT * FROM t_kelas WHERE perta = '".$pertax."' ORDER BY perta, kdprodi, kelas, nim asc");
+	$tampilUsr	=mysqli_query($Open,"SELECT * FROM t_kelas WHERE $wheres ORDER BY perta, kdprodi, kelas, nim asc");
 ?>
 <!-- begin row -->
 <div class="row">
@@ -77,8 +106,10 @@
 			</div>
 			<div class="panel-body">
 				<form action="index.php?page=form-view-data-kelas" name="isian" class="form-horizontal" method="POST" >
-				<div class="form-group"  style="margin-left: -15px">
-					<label for="perta" class="col-md-12 control-label text-left">Perta</label>
+
+				<div class="form-inline"  style="margin-bottom: 20px">
+					<div class="form-group">
+					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
 		                    	<?php
@@ -105,10 +136,55 @@
 		                           } 
 		                           ?>
 		                    </select>
-		                </div>
+	                    </div>
 		            </div>
-		            <!-- <input type="submit" name="cari" class="btn btn-warning" id="cari"> -->
-		            <hr>
+
+					<div class="form-group">
+					
+		                <div class="col-md-2 text-left">
+		                    <select id="kdprodi" name="kdprodi" class="form-control" searchable="" >
+	                        <option value="">--Pilih Prodi--</option>
+	                         <?php
+	                            $a=0;
+	                            $t=mysqli_query($Open,"SELECT * FROM m_prodi ORDER BY kodeprodi ASC");
+	                            while($tak=mysqli_fetch_array($t)){
+	                           ?>
+	                            <option value="<?=$tak['kodeprodi']?>" <?php echo ($cKodeprodi == $tak['kodeprodi']) ? 'selected' : '';?>><?=$tak['kodeprodi']?></option>";  
+	                           
+	                          <?php } ?>
+	                    </select>
+	                    </div>
+		            </div>
+
+		            <div class="form-group">
+					
+		                <div class="col-md-2 text-left">
+		                    <select id="kelas" name="kelas" class="form-control" searchable="" >
+	                        <option value="">--Pilih Kelas--</option>
+	                         <?php
+	                            $a=0;
+	                            $t=mysqli_query($Open,"SELECT DISTINCT(kelas) FROM t_kelas ORDER BY kelas ASC");
+	                            while($tak=mysqli_fetch_array($t)){
+	                           ?>
+	                            <option value="<?=$tak['kelas']?>" <?php echo ($ckelas == $tak['kelas']) ? 'selected' : '';?>><?=$tak['kelas']?></option>";  
+	                           <?php
+	                          }
+	                          ?>
+	                    </select>
+	                    </div>
+		            </div>
+
+		            <div class="form-group">
+					
+		                <div class="col-md-2 text-left">
+		                    <select id="status" name="status" class="form-control" searchable="" >
+	                        <option value="">--Pilih Status--</option>
+                            <option value="Aktif" <?php echo ($cStatus == 'Aktif') ? 'selected' : '';?>>Aktif</option>";  
+	                         <option value="Nonaktif" <?php echo ($cStatus == 'Nonaktif') ? 'selected' : '';?>>Nonaktif</option>";  
+	                    </select>
+	                    </div>
+		            </div>
+		        </div>
 		        </form>
 				<table id="data-table" class="table table-striped table-bordered nowrap" width="100%">
 					<thead>
@@ -119,6 +195,7 @@
 		                  <th align=center>Kelas</th>
 		                  <th align=center>NIM</th>
 		                  <th align=center>Nama</th>
+		                  <th align=center>Status</th>
 						  <th></th>
 						</tr>
 					</thead>
@@ -151,6 +228,10 @@
 
 				            <td align=left> 
 				              <?php echo strtoupper($usr['nama']); ?>
+				            </td>
+
+				            <td align=left> 
+				              <?php echo strtoupper($usr['status']); ?>
 				            </td>
 							<td class="text-center">
 								<a type="button" class="btn btn-info btn-icon btn-sm" href="index.php?page=form-edit-data-kelas&id=<?=$usr['id']?>" title="edit"><i class="fa fa-pencil fa-lg"></i></a>
@@ -194,7 +275,7 @@
 	          $('#portdosen').trigger('click');
 	     });
 
-		$('#perta').change(function(){
+		$('#perta, #kdprodi, #kelas, #status').change(function(){
 			// alert();
 	          $('form[name="isian"]').submit();
 	     });

@@ -19,10 +19,12 @@
 				$profil = mysqli_query($Open,"SELECT * FROM m_profil");
 				$rProfil = mysqli_fetch_array($profil);
 
-				$perta = mysqli_query($Open,"SELECT perta FROM m_periode ORDER BY perta DESC");
+				$perta = mysqli_query($Open,"SELECT * FROM m_periode ORDER BY perta DESC");
 				$rPerta = mysqli_fetch_array($perta);
 
 				$_SESSION['perta']		= $rPerta['perta'];
+				$_SESSION['perteks']	= $rPerta['periode'];
+				$_SESSION['utsuas']		= $rPerta['utsuas'];
 				$_SESSION['nama_pt']	= $rProfil['nama'];
 				$_SESSION['alamat_pt']	= $rProfil['alamat'];
 				$_SESSION['unit']		= $rProfil['unit'];

@@ -84,7 +84,7 @@
 				            </td>
 							<td class="text-center">
 								<a type="button" class="btn btn-info btn-icon btn-sm" href="index.php?page=form-edit-data-periode&id=<?=$usr['id']?>" title="edit"><i class="fa fa-pencil fa-lg"></i></a>
-								<a type="button" class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#Del<?php echo $usr['id']?>" title="delete"><i class="fa fa-trash-o fa-lg"></i></a>
+								<!-- <a type="button" class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#Del<?php echo $usr['id']?>" title="delete"><i class="fa fa-trash-o fa-lg"></i></a> -->
 							</td>
 						</tr>
 						<!-- #modal-dialog -->

@@ -96,6 +96,16 @@
 		                </div>
 		            </div>
 
+		            <div class="form-group">
+		                <label for="utsuas" class="col-md-3 control-label">UTSUAS</label>
+		                <div class="col-md-2">
+		                    <select id="utsuas" name="utsuas" class="form-control" >
+		                      <option value="UTS" <?php echo ($data['utsuas'] == 'UTS') ? 'selected' : '';?>>UTS </option>
+		                      <option value="UAS" <?php echo ($data['utsuas'] == 'UAS') ? 'selected' : '';?>>UAS </option>
+		                    </select>
+		                </div>
+		            </div>
+
 		             <div class="form-group">
 		    			<label for="tglawal" class="col-md-3 control-label">Dibuka</label>
 		    			<div class="col-md-2">
