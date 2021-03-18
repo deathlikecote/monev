@@ -34,10 +34,10 @@ $spreadsheet->getActiveSheet()->getStyle('A1:A2')
 $spreadsheet->getActiveSheet()->getStyle('A1:A2')
     ->getFont()->setBold(true);
 
-$spreadsheet->getActiveSheet()->getStyle('A4:F4')
+$spreadsheet->getActiveSheet()->getStyle('A4:G4')
     ->getFont()->setBold(true);
 
-$spreadsheet->getActiveSheet()->getStyle('A4:F4')
+$spreadsheet->getActiveSheet()->getStyle('A4:G4')
     ->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
 
 // Header Tabel
@@ -48,6 +48,7 @@ $spreadsheet->setActiveSheetIndex(0)
 ->setCellValue('D4', 'KELAS')
 ->setCellValue('E4', 'NIM')
 ->setCellValue('F4', 'NAMA')
+->setCellValue('G4', 'STATUS')
 ;
 
 $i=5; 
@@ -64,8 +65,9 @@ while ($row = $res1->fetch_assoc()) {
   ->setCellValue('D'.$i, $row['kelas'])
   ->setCellValue('E'.$i, $row['nim'])
   ->setCellValue('F'.$i, $row['nama'])
+  ->setCellValue('G'.$i, $row['status'])
   ;
-  $spreadsheet->getActiveSheet()->getStyle('A'.$i.':F'.$i)
+  $spreadsheet->getActiveSheet()->getStyle('A'.$i.':G'.$i)
     ->getBorders()->getAllBorders()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
   $i++; $no++;
 }

@@ -16,7 +16,7 @@ mysqli_query($Open, "TRUNCATE TABLE edompotensi");
 mysqli_query($Open, "TRUNCATE TABLE edomdata");
 
 $totalpotensi = 0;
-$t_kelas=mysqli_query($Open,"select * from t_kelas where perta = '".$_SESSION['perta']."'") ;
+$t_kelas=mysqli_query($Open,"select * from t_kelas where perta = '".$_SESSION['perta']."' AND status ='Aktif'") ;
 while($data_t_kelas=mysqli_fetch_array($t_kelas)){
 	$potensi=mysqli_query($Open,"
 	SELECT 
@@ -41,7 +41,7 @@ while($data_t_kelas=mysqli_fetch_array($t_kelas)){
 
 }
 
-$row=mysqli_query($Open,"select * from t_kelas where perta = '".$_SESSION['perta']."'") ;
+$row=mysqli_query($Open,"select * from t_kelas where perta = '".$_SESSION['perta']."' AND status ='Aktif'") ;
 while($data=mysqli_fetch_array($row)){
 	$cari=mysqli_query($Open,"
 		SELECT 
@@ -194,6 +194,9 @@ $data_lgenerate=mysqli_fetch_assoc($lgenerate);
 			parent.document.getElementById("edom_bar").style.width ="100%";
 			parent.document.getElementById("edom_bar").innerHTML ="Selesai";
 			parent.document.getElementById("edom_bar_lastgenerate").innerHTML ="'.$data_lgenerate['waktu'].'";
+			if(parent.document.getElementById("edom_bar").innerHTML ="Selesai"){
+				parent.location.reload();
+			}
 	   </script>';
 
 unset($_SESSION["berhasil"]);

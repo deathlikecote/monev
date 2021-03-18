@@ -4,6 +4,7 @@
 		$perta		= $_POST['perta'];
 		$kdprodi	= $_POST['kdprodi'];
 		$kelas		= $_POST['kelas'];
+		$status		= $_POST['status'];
 		$nimnama	= $_POST['nim'];
 		$exnimnama	= explode('|', $nimnama);
 		$nim 		= $exnimnama[0];
@@ -21,13 +22,15 @@
 	    	kdprodi,
 			kelas,
 			nim,
-			nama
+			nama,
+			status
 	    	) VALUES (
 	    	'$perta',
 	    	'$kdprodi',
 			'$kelas',
 			'$nim',
-			'".$r['nama']."'
+			'".$r['nama']."',
+			'$status'
 	    	)";
 	    	$hasil = mysqli_query($Open,$query);
 	    	if(!$hasil){

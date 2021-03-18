@@ -13,6 +13,7 @@
 	$kdprodi	= $_POST['kdprodi'];
 	$kelas		= $_POST['kelas'];
 	$nim		= $_POST['nim'];
+	$status		= $_POST['status'];
 	$nim_old	= $_POST['nim_old'];
 	
 	$cari=mysqli_query($Open,"select * from t_kelas where nim='".$nim."' and perta = '".$perta."'") ;
@@ -33,7 +34,8 @@
 			kdprodi		= '$kdprodi',
 			kelas		= '$kelas',
 			nim			= '$nim',
-			nama		= '".$r['nama']."'
+			nama		= '".$r['nama']."',
+			status		= '$status'
 			WHERE id='$id'");
 		if($update){
 			$update= mysqli_query ($Open,"UPDATE m_user SET 

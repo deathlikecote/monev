@@ -105,6 +105,17 @@
 		    			</div>
 		    		</div>
 		    		
+		    		<div class="form-group">
+					<label for="status" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Status</label>
+		                <div class="col-md-2 text-left">
+		                    <select id="status" name="status" class="form-control" searchable="" >
+	                        <option value="">--Pilih Status--</option>
+                            <option value="Aktif">Aktif</option>";  
+	                         <option value="Nonaktif">Nonaktif</option>";  
+	                    </select>
+	                    </div>
+		            </div>
+
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">
@@ -146,6 +157,13 @@
 			alert("Silahkan pilih NIM");
 			document.getElementById('nim').style.borderColor='red';
 			document.getElementById('nim').focus();;
+			return false;
+		}
+
+		if(""==document.forms.isian.status.value){
+			alert("Silahkan pilih Status");
+			document.getElementById('status').style.borderColor='red';
+			document.getElementById('status').focus();;
 			return false;
 		}
 

@@ -12,7 +12,7 @@
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Referensi <small>Penugasan Dosen <i class="fa fa-angle-right"></i> Add&nbsp;</small></h1>
+<h1 class="page-header">Generate <small>Potensi EDOM & EPOM <i class="fa fa-angle-right"></i> Add&nbsp;</small></h1>
 <!-- end page-header -->
 <!-- begin row -->
 <div class="row">
@@ -27,40 +27,10 @@
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 				</div>
-				<h4 class="panel-title">Form data penugasan dosen</h4>
+				<h4 class="panel-title">Form Generate EDOM & EPOM</h4>
 			</div>
 			<div class="panel-body">
 				<form action="index.php?page=master-data-penugasan" name="isian" class="form-horizontal" method="POST" enctype="multipart/form-data" >
-					<div class="form-group">
-		                <label for="perta" class="col-md-3 control-label">Perta</label>
-		                <div class="col-md-2">
-		                    <select id="perta" name="perta" class="form-control" >
-		                    	<?php
-		                            $per=1;
-		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
- 										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
-		                           ?>
-		                    </select>
-		                </div>
-		            </div>
 
 		            <div class="form-group">
 						<label for="kdprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Prodi</label>
@@ -85,50 +55,15 @@
 						<div class="col-md-2">
 	                     <select id="kelas" name="kelas" class="form-control" searchable="" >
 	                        <option value="" disabled selected>--Pilih Kelas--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT DISTINCT(kelas) FROM t_kelas ORDER BY kelas ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                           
-	                            echo "<option value=".$tak['kelas'].">".$tak['kelas']."</option>";  
-	                           
-	                          }
-	                          ?>
 	                    </select>
 	                	</div>
 	                </div>
 
-		    		<div class="form-group">
-		    			<label for="kodemk" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Matakuliah</label>
+	                <div class="form-group">
+		    			<label for="nim" class="col-md-3 control-label"><font color="red">*&nbsp;</font>NIM</label>
 		    			<div class="col-md-4">
-		    				<select id="kodemk" name="kodemk" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih MK--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_matakuliah ORDER BY kodemk ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                           
-	                            	echo "<option value=".$tak['kodemk'].">".$tak['kodemk']." | ".$tak['namamk']."</option>";  
-	                          	}
-	                          ?>
-	                    </select>
-		    				
-		    			</div>
-		    		</div>
-		    		
-		    		<div class="form-group">
-		    			<label for="kodedosen" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Dosen</label>
-		    			<div class="col-md-4">
-		    				<select id="kodedosen" name="kodedosen" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih Dosen--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_dosen ORDER BY kodedosen ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                           
-	                            	echo "<option value=".$tak['kodedosen'].">".$tak['kodedosen']." | ".$tak['nama']."</option>";  
-	                          	}
-	                          ?>
+		    				<select id="nim" name="nim" class="form-control select2" searchable="" >
+	                        <option value="" disabled selected>--Pilih NIM--</option>
 	                    </select>
 		    				
 		    			</div>
@@ -185,4 +120,24 @@
 			return false;
 		}
 	}
+$(document).ready(function(){
+	$('#kdprodi').change(function(){
+		var lookVarFilter = $(this).val();
+		$.post("potensi/edom/master-lookup.php", {jenis:'lookValFilter', lookVarFilter:lookVarFilter}, function(result){
+			$('#kelas').html(result);
+			$('#nim').find('option').not(':first').remove();
+			$("#nim").val($("#nim option:first").val());
+		});
+
+	});
+
+	$('#kelas').change(function(){
+		var kelas = $(this).val();
+		var kdprodi = $('#kdprodi').val();
+		$.post("potensi/edom/master-lookup.php", {jenis:'lookValFilterNim', kdprodi:kdprodi, kelas:kelas}, function(result){
+			$('#nim').html(result);
+		});
+
+	});
+});
 </script>

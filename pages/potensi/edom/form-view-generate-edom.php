@@ -38,7 +38,7 @@
 		<a href="referensi/penugasan/export-data-penugasan.php" class="btn btn-sm btn-success m-b-10"><i class="fa fa-file"></i> &nbsp;Export</a>
 	</li>
 	
-	<li><a href="index.php?page=form-master-data-penugasan" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-circle"></i> &nbsp;Add</a></li>
+	<li><a href="index.php?page=form-master-generate-edom" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-circle"></i> &nbsp;Add</a></li>
 	
 </ol>
 
@@ -47,7 +47,7 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title"><span class="label label-inverse"> # Delete</span> &nbsp; Anda akan menghapus data pada perta <u><?=$pertax?></u> ?</h5>
+				<h5 class="modal-title"><span class="label label-inverse"> # Delete</span> &nbsp; Anda yakin ?</h5>
 			</div>
 			<div class="modal-body" align="center">
 				<a href="index.php?page=deleteall-data-penugasan&perta=<?=$pertax?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
@@ -61,7 +61,7 @@
 
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Potensi <small>EDOM&nbsp;</small></h1>
+<h1 class="page-header">Generate <small>EDOM & EPOM&nbsp;</small></h1>
 <!-- end page-header -->
 <?php
 	
@@ -81,21 +81,21 @@
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 				</div>
-				<h4 class="panel-title">Results <span class="text-info"><?php echo mysqli_num_rows($tampilUsr);?></span> rows for "Data EDOM"</h4>
+				<h4 class="panel-title">Results <span class="text-info"><?php echo mysqli_num_rows($tampilUsr);?></span> rows for "Data Generate EDOM & EPOM"</h4>
 			</div>
             <div class="alert alert-success fade in">
 				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
 				<i class="fa fa-info fa-2x pull-left"></i> Gunakan button di sebelah kanan setiap baris tabel untuk menuju instruksi edit dan hapus ...
 			</div>
 			<div class="panel-body">
-				<div class="row" style="margin-bottom: 20px">
+				<div class="row" style="margin-bottom: 30px">
 		          <div class="col-md-12">
 		            <?php 
 		              $edom=mysqli_query($Open,"select * from t_generate where perta = '".$_SESSION['perta']."' and generate ='edompotensi'") ;
 		              $r_edom=mysqli_fetch_assoc($edom);
 		             ?>
 		            <div class="col-md-10 text-muted" style="padding: 0;">
-		              <span class="col-md-6"  style="padding: 0;"><b>EDOM POTENSI - <?php echo $_SESSION['perta']; ?></b></span>
+		              <span class="col-md-6"  style="padding: 0;"><b>GENERATE EDOM - <?php echo $_SESSION['perta']; ?></b></span>
 		              <span class="col-md-6 text-right" id="lastgenerate"><small><i>Last generate : <span id="edom_bar_lastgenerate"><?php echo $r_edom['waktu']; ?></span></i></small></span>
 		              <hr style="margin: 7px 0 10px 0">
 		            </div>
@@ -121,7 +121,39 @@
 		            <small>Total Potensi: <span id="edom_bar_total"><?php echo $r_edom['total']; ?></span> | Berhasil : <span id="edom_bar_ok"><?php echo $r_edom['berhasil']; ?></span> | Duplikat (diabaikan) : <span id="edom_bar_dup"><?php echo $r_edom['duplikat']; ?></span> | Gagal : <span id="edom_bar_no"><?php echo $r_edom['gagal']; ?></span></small>
 		          </div>
 		          </div>
-		        
+		        	
+
+		        	<!-- EPOM -->
+		        	<div class="col-md-12" style="margin-top: 1.6em">
+		            <?php 
+		              $epom=mysqli_query($Open,"select * from t_generate where perta = '".$_SESSION['perta']."' and generate ='epompotensi'") ;
+		              $r_epom=mysqli_fetch_assoc($epom);
+		             ?>
+		            <div class="col-md-10 text-muted" style="padding: 0;">
+		              <span class="col-md-6"  style="padding: 0;"><b>GENERATE EPOM - <?php echo $_SESSION['perta']; ?></b></span>
+		              <span class="col-md-6 text-right" id="lastgenerate"><small><i>Last generate : <span id="epom_bar_lastgenerate"><?php echo $r_epom['waktu']; ?></span></i></small></span>
+		              <hr style="margin: 7px 0 10px 0">
+		            </div>
+
+		            <div class="progress col-md-10" style="padding: 0;margin-bottom: 0">
+		              <?php 
+		                if ($r_epom['generate'] != '') {
+		                  echo '<div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%" id="epom_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100">Selesai</div>';
+		                }else{
+		                  echo '<div class="progress-bar progress-bar-striped progress-bar-animated" id="epom_bar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>';
+		                }
+		               ?>
+		              
+		            </div>
+
+		            <div class="col-md-1" style="">  
+		              <a type="button" name="generateepom" id="generateepom" class="btn btn-warning " value="Generate" style="font-size: 1.2rem;padding: 2px 10px"><i class="fa fa-repeat"></i> Generate</a>
+		            </div>
+
+		            <div class="col-md-12 text-muted " style="padding: 0;">
+		            <small>Total Potensi: <span id="epom_bar_total"><?php echo $r_epom['total']; ?></span> | Berhasil : <span id="epom_bar_ok"><?php echo $r_epom['berhasil']; ?></span> | Duplikat (diabaikan) : <span id="epom_bar_dup"><?php echo $r_epom['duplikat']; ?></span> | Gagal : <span id="epom_bar_no"><?php echo $r_epom['gagal']; ?></span></small>
+		          </div>
+		          </div>
 		       </div> <!-- EOF Generate -->
 
 				<form action="index.php?page=form-view-generate-edom" name="isian" class="form-horizontal" method="POST" >
@@ -283,7 +315,7 @@
 
 	$(document).ready(function(){
 
-		$('#perta, #kdprodi, #kelas').change(function(){
+		$('#perta, #kdprodi, #kelas, #status').change(function(){
 			// alert();
 	          $('form[name="isian"]').submit();
 	     });
@@ -292,7 +324,7 @@
 
         var edomask = $('#edom_bar_lastgenerate');
         if(edomask.html() != ''){
-           if (confirm('Anda yakin ?')) {
+           if (confirm('Anda sudah melakukan generate sebelumnya. Anda yakin ?')) {
                 edomgenerate();
            }
          }else{
@@ -309,7 +341,30 @@
          }
 
       });
+
+	   $("#generateepom").click(function(){
+
+        var epomask = $('#epom_bar_lastgenerate');
+        if(epomask.html() != ''){
+           if (confirm('Anda sudah melakukan generate sebelumnya. Anda yakin ?')) {
+                epomgenerate();
+           }
+         }else{
+             epomgenerate();
+         }
+
+        function epomgenerate(){
+          document.getElementById("epom_bar_no").innerHTML ="0";
+          document.getElementById("epom_bar_ok").innerHTML ="0";
+          document.getElementById("epom_bar_total").innerHTML ="0";
+          document.getElementById("epom_bar_dup").innerHTML ="0";
+          document.getElementById('loadarea').src = 'potensi/edom/generate-epom.php';
+        }
+
+      });
+
 	})
+
 
 	 function validateForm()
     {

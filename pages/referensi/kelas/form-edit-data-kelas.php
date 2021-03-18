@@ -117,6 +117,18 @@
 		    				
 		    			</div>
 		    		</div>
+
+		    		<div class="form-group">
+						<label for="status" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Status</label>
+		                <div class="col-md-2 text-left">
+		                    <select id="status" name="status" class="form-control" searchable="" >
+	                        <option value="">--Pilih Status--</option>
+                            <option value="Aktif" <?php echo ($data['status'] == 'Aktif') ? 'selected' : '';?>>Aktif</option>";  
+	                         <option value="Nonaktif" <?php echo ($data['status'] == 'Nonaktif') ? 'selected' : '';?>>Nonaktif</option>";  
+	                    </select>
+	                    </div>
+		            </div>
+
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">

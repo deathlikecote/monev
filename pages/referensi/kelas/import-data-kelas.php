@@ -33,6 +33,7 @@ session_start();
 					$kelas		= $spreadSheetAry[$i]['3'];
 					$nim		= $spreadSheetAry[$i]['4'];
 					$nama		= $spreadSheetAry[$i]['5'];
+					$status		= $spreadSheetAry[$i]['6'];
 			        
 			        $cek=mysqli_num_rows (mysqli_query($Open,"SELECT * FROM t_kelas WHERE nim='$nim' AND perta ='".$perta."'"));
 			        $qr=mysqli_query($Open,"SELECT nama, tgllahir FROM m_siswa WHERE nim='".$nim."'") ;
@@ -43,7 +44,8 @@ session_start();
 						$query = mysqli_query($Open,"UPDATE t_kelas SET
 							kdprodi ='$kdprodi',
 							kelas ='$kelas',
-							nama ='$nama'
+							nama ='$nama',
+							status ='$status'
 							WHERE nim = '$nim' AND perta ='".$perta."'
 							");
 
@@ -66,13 +68,15 @@ session_start();
 						kdprodi,
 						kelas,
 						nim,
-						nama
+						nama,
+						status
 						) VALUES (
 						'$perta',
 						'$kdprodi',
 						'$kelas',
 						'$nim',
-						'$nama')");
+						'$nama',
+						'$status')");
 						
 						$cari=mysqli_query($Open,"SELECT * FROM m_user WHERE nama_user='".$nim."'") ;
 			    		$datas=mysqli_num_rows($cari);

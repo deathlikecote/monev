@@ -225,12 +225,11 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 						</ul>
 					</li>
 					<li class="has-sub">
-						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-load-b bg-green"></i><span>Potensi</span></a>
+						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-load-b bg-green"></i><span>Generate Potensi</span></a>
 						<ul class="sub-menu">
-							<li><a href="index.php?page=form-view-generate-edom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Generate EDOM</a></li>
-							<li><a href="index.php?page=form-view-generate-epom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Generate EPOM</a></li>
-							<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Generate EPOD</a></li>
-							<li><a href="index.php?page=form-view-generate-edop"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Generate EDOP</a></li>
+							<li><a href="index.php?page=form-view-generate-edom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOM & EPOM</a></li>
+							<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EPOD</a></li>
+							<li><a href="index.php?page=form-view-generate-edop"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOP</a></li>
 						</ul>
 					</li>
 					<li><a href="index.php?page=for-view-data-monitoring"><i class="ion-ios-eye bg-blue"></i><span>Monitoring</span></a></li>
