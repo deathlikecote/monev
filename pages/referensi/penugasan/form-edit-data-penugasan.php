@@ -135,7 +135,11 @@
 	                        <option value="" disabled selected>--Pilih Dosen--</option>
 	                         <?php
 	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_dosen ORDER BY kodedosen ASC");
+	                            $t=mysqli_query($Open,"
+	                            	SELECT kodedosen AS kodedosen, nama AS nama FROM m_dosen 
+	                            	UNION 
+	                            	SELECT tim AS kodedosen, 'Tim dosen' AS nama FROM m_timdosen
+	                            	ORDER BY kodedosen ASC");
 	                            while($tak=mysqli_fetch_array($t)){
 	                            	?>
 	                            	<option value="<?=$tak['kodedosen']?>" <?php echo ($data['kodedosen'] == $tak['kodedosen']) ? 'selected' : '';?>><?php echo $tak['kodedosen']." | ".$tak['nama']; ?></option> 

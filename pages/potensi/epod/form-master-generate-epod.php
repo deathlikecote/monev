@@ -12,7 +12,7 @@
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Generate <small>Potensi EDOM & EPOM <i class="fa fa-angle-right"></i> Add&nbsp;</small></h1>
+<h1 class="page-header">Generate <small>Potensi EPOD & EDOP <i class="fa fa-angle-right"></i> Add&nbsp;</small></h1>
 <!-- end page-header -->
 <!-- begin row -->
 <div class="row">
@@ -27,10 +27,10 @@
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
 					<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
 				</div>
-				<h4 class="panel-title">Form Generate EDOM & EPOM</h4>
+				<h4 class="panel-title">Form Generate EPOD & EDOP</h4>
 			</div>
 			<div class="panel-body">
-				<form action="index.php?page=master-generate-edom" name="isian" class="form-horizontal" method="POST" enctype="multipart/form-data" >
+				<form action="index.php?page=master-generate-epod" name="isian" class="form-horizontal" method="POST" enctype="multipart/form-data" >
 
 		            <div class="form-group">
 						<label for="kdprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Prodi</label>
@@ -51,19 +51,40 @@
 	                </div>
 
 		    		<div class="form-group">
-						<label for="kelas" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Kelas</label>
-						<div class="col-md-2">
-	                     <select id="kelas" name="kelas" class="form-control" searchable="" >
-	                        <option value="" disabled selected>--Pilih Kelas--</option>
+		    			<label for="kodemk" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Matakuliah</label>
+		    			<div class="col-md-4">
+		    				<select id="kodemk" name="kodemk" class="form-control select2" searchable="" >
+	                        <option value="" disabled selected>--Pilih MK--</option>
+	                         <?php
+	                            $a=0;
+	                            $t=mysqli_query($Open,"SELECT * FROM m_matakuliah ORDER BY kodemk ASC");
+	                            while($tak=mysqli_fetch_array($t)){
+	                          	?>
+	                            	<option value="<?=$tak['kodemk']?>"><?php echo $tak['kodemk']." | ".$tak['namamk']; ?></option> 
+
+	                            <?php } ?>
 	                    </select>
-	                	</div>
-	                </div>
+		    				
+		    			</div>
+		    		</div>
 
 	                <div class="form-group">
-		    			<label for="nim" class="col-md-3 control-label"><font color="red">*&nbsp;</font>NIM</label>
+		    			<label for="kodedosen" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Dosen</label>
 		    			<div class="col-md-4">
-		    				<select id="nim" name="nim" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih NIM--</option>
+		    				<select id="kodedosen" name="kodedosen" class="form-control select2" searchable="" >
+	                        <option value="" disabled selected>--Pilih Dosen--</option>
+	                         <?php
+	                            $a=0;
+	                            $t=mysqli_query($Open,"
+	                            SELECT kodedosen AS kodedosen, nama AS nama FROM m_dosen 
+                            	UNION 
+                            	SELECT tim AS kodedosen, 'Tim dosen' AS nama FROM m_timdosen
+                            	ORDER BY kodedosen ASC");
+	                            while($tak=mysqli_fetch_array($t)){
+	                            	?>
+	                            	<option value="<?=$tak['kodedosen']?>" ><?php echo $tak['kodedosen']." | ".$tak['nama']; ?></option> 
+
+	                            <?php } ?>
 	                    </select>
 		    				
 		    			</div>
@@ -73,7 +94,7 @@
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">
 							<button type="submit" name="save" value="save" class="btn btn-primary" onclick="return validateForm()"><i class="fa fa-floppy-o"></i> &nbsp;Save</button>&nbsp;
-							<a type="button" class="btn btn-default active" href="index.php?page=form-view-generate-edom"><i class="ion-arrow-return-left"></i>&nbsp;Cancel</a>
+							<a type="button" class="btn btn-default active" href="index.php?page=form-view-generate-epod"><i class="ion-arrow-return-left"></i>&nbsp;Cancel</a>
 						</div>
 					</div>
 				</form>
@@ -98,14 +119,6 @@
 			document.getElementById('kdprodi').focus();;
 			return false;
 		}
-
-		if(""==document.forms.isian.kelas.value){
-			alert("Silahkan pilih Kelas");
-			document.getElementById('kelas').style.borderColor='red';
-			document.getElementById('kelas').focus();;
-			return false;
-		}
-
 		if(""==document.forms.isian.kodemk.value){
 			alert("Silahkan pilih Matakuliah");
 			document.getElementById('kodemk').style.borderColor='red';
@@ -113,10 +126,10 @@
 			return false;
 		}
 
-		if(""==document.forms.isian.nim.value){
-			alert("Silahkan pilih Nim");
-			document.getElementById('nim').style.borderColor='red';
-			document.getElementById('nim').focus();;
+		if(""==document.forms.isian.kodedosen.value){
+			alert("Silahkan pilih Dosen");
+			document.getElementById('kodedosen').style.borderColor='red';
+			document.getElementById('kodedosen').focus();;
 			return false;
 		}
 	}

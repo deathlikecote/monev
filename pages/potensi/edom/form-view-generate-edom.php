@@ -35,7 +35,7 @@
 		?>
 	</li>
 	<li>
-		<a href="referensi/penugasan/export-data-penugasan.php" class="btn btn-sm btn-success m-b-10"><i class="fa fa-file"></i> &nbsp;Export</a>
+		<a href="potensi/edom/export-generate-edom.php" class="btn btn-sm btn-success m-b-10"><i class="fa fa-file"></i> &nbsp;Export</a>
 	</li>
 	
 	<li><a href="index.php?page=form-master-generate-edom" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-circle"></i> &nbsp;Add</a></li>
@@ -50,7 +50,7 @@
 				<h5 class="modal-title"><span class="label label-inverse"> # Delete</span> &nbsp; Anda yakin ?</h5>
 			</div>
 			<div class="modal-body" align="center">
-				<a href="index.php?page=deleteall-data-penugasan&perta=<?=$pertax?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
+				<a href="index.php?page=deleteall-generate-edom&perta=<?=$pertax?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
 			</div>
 			<div class="modal-footer">
 				<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cancel</a>
@@ -275,7 +275,7 @@
 				              <?php echo strtoupper($usr['kelas']); ?>
 				            </td>
 							<td class="text-center">
-								<!-- <a type="button" class="btn btn-info btn-icon btn-sm" href="index.php?page=form-edit-data-penugasan&id=<?=$usr['id']?>" title="edit"><i class="fa fa-pencil fa-lg"></i></a> -->
+								<!-- <a type="button" class="btn btn-info btn-icon btn-sm" href="index.php?page=form-edit-generate-edom&id=<?=$usr['id']?>" title="edit"><i class="fa fa-pencil fa-lg"></i></a> -->
 
 								<a type="button" class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#Del<?php echo $usr['id']?>" title="delete"><i class="fa fa-trash-o fa-lg"></i></a>
 							</td>
@@ -288,7 +288,7 @@
 										<h5 class="modal-title"><span class="label label-inverse"> # Delete</span> &nbsp; Anda yakin?</h5>
 									</div>
 									<div class="modal-body" align="center">
-										<a href="index.php?page=delete-data-penugasan&id=<?=$usr['id']?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
+										<a href="index.php?page=delete-generate-edom&perta=<?=$usr['ta']?>&nim=<?=$usr['nim']?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
 									</div>
 									<div class="modal-footer">
 										<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cancel</a>
