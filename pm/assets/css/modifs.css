@@ -1,0 +1,10 @@
+#ul1 li.terpilih, #ul2 li.terpilih {
+	
+	background-color: #e67e22;
+	/*#7f8c8d;*/
+	opacity: 0.5;
+	color: #ffffff;
+	text-align: right;
+	/*font-weight: bold;*/
+}
+

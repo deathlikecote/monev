@@ -216,7 +216,7 @@
 										<h5 class="modal-title"><span class="label label-inverse"> # Delete</span> &nbsp; Anda yakin?</h5>
 									</div>
 									<div class="modal-body" align="center">
-										<a href="index.php?page=delete-generate-epod&perta=<?=$usr['ta']?>&kdsn=<?=$usr['kodedosen']?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
+										<a href="index.php?page=delete-generate-epod&perta=<?=$usr['ta']?>&kdsn=<?=$usr['kodedosen']?>&mk=<?=$usr['kodemk']?>&kdprodi=<?=$usr['idprogstudi']?>" class="btn btn-danger">&nbsp; &nbsp;YES&nbsp; &nbsp;</a>
 									</div>
 									<div class="modal-footer">
 										<a href="javascript:;" class="btn btn-sm btn-white" data-dismiss="modal">Cancel</a>

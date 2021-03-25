@@ -1,0 +1,513 @@
+	::-webkit-scrollbar {
+		
+		display: none;
+	}
+	
+	html {
+		
+		margin: 0;
+		padding: 0;
+	}
+	
+	body {
+		
+		/*SANSERIF*/
+		/*font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;*/
+		/*font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;*/
+		/*font-family: "Arial Narrow", Arial, sans-serif;*/
+		/*font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;*/
+		/*font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;*/
+		/*font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;*/
+		/*font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;*/
+		/*font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;*/		
+		/*font-family: "Franklin Gothic Medium", "Franklin Gothic", "ITC Franklin Gothic", Arial, sans-serif;*/
+		/*font-family: Futura, "Trebuchet MS", Arial, sans-serif;*/		
+		/*font-family: Geneva, Tahoma, Verdana, sans-serif;*/
+		/*font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;*/
+		/*font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+		/*font-family: Impact, Haettenschweiler, "Franklin Gothic Bold", Charcoal, "Helvetica Inserat", "Bitstream Vera Sans Bold", "Arial Black", sans serif;*/		
+		/*font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;*/
+		/*font-family: Optima, Segoe, "Segoe UI", Candara, Calibri, Arial, sans-serif;*/
+		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+		/*font-family: Tahoma, Verdana, Segoe, sans-serif;*/
+		/*font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;*/
+		/*font-family: Verdana, Geneva, sans-serif;*/
+		
+		
+		/*SERIF*/
+		/*font-family: Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;*/		
+		/*font-family: "Big Caslon", "Book Antiqua", "Palatino Linotype", Georgia, serif;*/
+		/*font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;*/
+		/*font-family: "Book Antiqua", Palatino, "Palatino Linotype", "Palatino LT STD", Georgia, serif;*/
+		/*font-family: "Calisto MT", "Bookman Old Style", Bookman, "Goudy Old Style", Garamond, "Hoefler Text", "Bitstream Charter", Georgia, serif;*/
+		/*font-family: Cambria, Georgia, serif;*/		
+		/*font-family: Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif;*/
+		/*font-family: Garamond, Baskerville, "Baskerville Old Face", "Hoefler Text", "Times New Roman", serif;*/
+		/*font-family: Georgia, Times, "Times New Roman", serif;*/
+		/*font-family: "Goudy Old Style", Garamond, "Big Caslon", "Times New Roman", serif;*/
+		/*font-family: "Hoefler Text", "Baskerville old face", Garamond, "Times New Roman", serif;*/
+		/*font-family: "Lucida Bright", Georgia, serif;*/
+		/*font-family: Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;*/
+		/*font-family: Perpetua, Baskerville, "Big Caslon", "Palatino Linotype", Palatino, "URW Palladio L", "Nimbus Roman No9 L", serif;*/
+		/*font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;*/
+		/*font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;*/
+		/*font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;*/
+		/*font-family: "Andale Mono", AndaleMono, monospace;*/
+		/*font-family: Consolas, monaco, monospace;*/
+		/*font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;*/
+		/*font-family: "Lucida Console", "Lucida Sans Typewriter", Monaco, "Bitstream Vera Sans Mono", monospace;*/
+		/*font-family: "Lucida Sans Typewriter", "Lucida Console", Monaco, "Bitstream Vera Sans Mono", monospace;*/
+		/*font-family: Monaco, Consolas, "Lucida Console", monospace;*/
+		
+		/*FANTASY*/
+		/*font-family: Copperplate, "Copperplate Gothic Light", fantasy;*/
+		/*font-family: Papyrus, fantasy;*/
+		
+		/*SCRIPT*/
+		/*font-family: "Brush Script MT", cursive;*/		
+		
+		font-size: 12px;
+		margin: 0;		
+		padding: 0;		
+	}
+	
+	form {
+		
+		margin: 0;
+		padding: 0;
+	}
+	
+	form#formlogin {
+		
+		margin-top: 20px;
+	}
+	
+	form#formlogin input {
+		
+		border: none;		
+		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+		font-size: 0.9em;
+		margin	: 5px;
+		padding	: 10px;
+	}
+
+	form#formlogin button {
+		
+		border		: none;
+		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
+		font-size	: 1em;
+		font-weight	: bold;
+		margin		: 5px;
+		padding		: 10px;
+		width: 155px;		
+	}
+	
+	form#formlogin button:hover {
+		
+		cursor: pointer;
+	}
+	
+	a {
+		
+		color: #F9FAF5;
+		text-decoration	: none;
+		padding: 0;
+	}
+	
+	a:hover {
+		
+		color: #FFFFFF;
+	}
+		
+	.error{
+		
+		font-size: 1em;
+		margin-bottom: 5px;		
+		padding: 5px;
+	}
+
+	.error span{
+		
+		font-weight: bold;
+	}
+	
+	ul.kotak {
+		
+		list-style-type: none;
+		margin: 100px auto;
+		padding: 0;		
+		width: 560px;
+	}
+	
+	
+	ul.kotak a li {
+		
+		float: left;
+		font-weight: lighter;
+		font-size: 1em;
+		height: 250px;
+		margin			: 5px;
+		padding			: 10px;
+		text-align: center;
+		vertical-align: middle;
+		width: 250px;
+	}
+	
+	.banner{
+		height: auto;width:100%;
+	}	
+	
+	ul.kotak a li img.logo {
+		
+		height		: 100px;
+		margin-top: 20px;
+		width		: 100px;
+	}
+	
+	ul.kotak a li div.judul {
+		
+		font-size	: 2em;
+		font-weight: bold;
+	} 
+	
+	ul.kotak a li div.judul small {
+		
+		border-bottom	: 1px solid #FFFFFF;
+		display 		: block;
+		font-size		: 0.6em;
+		font-weight		: normal;
+	}
+
+	ul.kotak a li div.judul span {
+		
+		display 		: block;
+		font-size	: 0.6em;
+		margin-top: 10px;
+	}
+	
+	.wetasphalt {
+		
+		color: #ffffff;
+		background-color: #34495e;
+	}
+	
+	.midnightblue {
+		
+		color: #ffffff;
+		background-color: #2c3e50;
+	}
+	
+	.concrete {
+		
+		color: #ffffff;
+		background-color: #95a5a6;
+	}
+	
+	.asbestos {
+		
+		color: #ffffff;
+		background-color: #7f8c8d;
+	}
+	
+	.amethyst {
+		
+		color: #ffffff;
+		background-color: #9b59b6;
+	}
+	
+	.westeria {
+		
+		color: #ffffff;
+		background-color: #8e44ad;
+	}
+	
+	.clouds {
+		
+		color: #7f8c8d;
+		background-color: #ecf0f1;
+	}
+	
+	.silver {
+		
+		color: #ffffff;
+		background-color: #bdc3c7;
+	}
+	
+	.peterriver {
+		
+		color: #ffffff;
+		background-color: #3498db;
+	}
+	
+	.belizehole {
+		
+		color: #ffffff;
+		background-color: #2980b9;
+	}
+	
+	.alizarin {
+		
+		color: #ffffff;
+		background-color: #e74c3c;
+	}
+	
+	.pomegranate {
+		
+		color: #ffffff;
+		background-color: #c0392b;
+	}
+	
+	.emerald {
+		
+		color: #ffffff;
+		background-color: #2ecc71;
+	}
+	
+	.nephritis {
+		
+		color: #ffffff;
+		background-color: #27ae60;
+	}
+	
+	.carrot {
+		
+		color: #ffffff;
+		background-color: #e67e22;
+	}
+	
+	.pumpkin {
+		
+		color: #ffffff;
+		background-color: #d35400;
+	}
+	
+	.torquoise {
+		
+		color: #ffffff;
+		background-color: #1abc9c;
+	}
+	
+	.greensea {
+		
+		color: #ffffff;
+		background-color: #16a085;
+	}
+	
+	.sunflower {
+		
+		color: #ffffff;
+		background-color: #f1c40f;
+	}
+	
+	.orange {
+		
+		color: #ffffff;
+		background-color: #f39c12;
+	}
+	
+	@media screen and (max-width : 839px) {
+		
+		ul.kotak {
+			
+			width: 560px;
+			margin: 50px auto;
+		}
+	}
+	
+	@media screen and (max-width : 559px) {
+		
+		ul.kotak {
+			
+			width: 280px;
+			margin: 20px auto;
+		}
+	}
+	
+/*LOADING**********************************************************************/
+
+#loading{
+	display: none;
+	opacity:0.3;
+	filter:Alpha(opacity=30); 
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	left:0;
+	top:0;
+	position: fixed;
+		
+}
+
+#floatingCirclesG{
+	margin : 200px auto;
+	
+position:relative;
+width:128px;
+height:128px;
+-moz-transform:scale(0.6);
+-webkit-transform:scale(0.6);
+-ms-transform:scale(0.6);
+-o-transform:scale(0.6);
+transform:scale(0.6);
+}
+
+.f_circleG{
+position:absolute;
+background-color:#FFFFFF;
+height:23px;
+width:23px;
+-moz-border-radius:12px;
+-moz-animation-name:f_fadeG;
+-moz-animation-duration:0.72s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-direction:linear;
+-webkit-border-radius:12px;
+-webkit-animation-name:f_fadeG;
+-webkit-animation-duration:0.72s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-direction:linear;
+-ms-border-radius:12px;
+-ms-animation-name:f_fadeG;
+-ms-animation-duration:0.72s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-direction:linear;
+-o-border-radius:12px;
+-o-animation-name:f_fadeG;
+-o-animation-duration:0.72s;
+-o-animation-iteration-count:infinite;
+-o-animation-direction:linear;
+border-radius:12px;
+animation-name:f_fadeG;
+animation-duration:0.72s;
+animation-iteration-count:infinite;
+animation-direction: normal;
+}
+
+#frotateG_01{
+left:0;
+top:52px;
+-moz-animation-delay:0.27s;
+-webkit-animation-delay:0.27s;
+-ms-animation-delay:0.27s;
+-o-animation-delay:0.27s;
+animation-delay:0.27s;
+}
+
+#frotateG_02{
+left:15px;
+top:15px;
+-moz-animation-delay:0.36s;
+-webkit-animation-delay:0.36s;
+-ms-animation-delay:0.36s;
+-o-animation-delay:0.36s;
+animation-delay:0.36s;
+}
+
+#frotateG_03{
+left:52px;
+top:0;
+-moz-animation-delay:0.45s;
+-webkit-animation-delay:0.45s;
+-ms-animation-delay:0.45s;
+-o-animation-delay:0.45s;
+animation-delay:0.45s;
+}
+
+#frotateG_04{
+right:15px;
+top:15px;
+-moz-animation-delay:0.54s;
+-webkit-animation-delay:0.54s;
+-ms-animation-delay:0.54s;
+-o-animation-delay:0.54s;
+animation-delay:0.54s;
+}
+
+#frotateG_05{
+right:0;
+top:52px;
+-moz-animation-delay:0.63s;
+-webkit-animation-delay:0.63s;
+-ms-animation-delay:0.63s;
+-o-animation-delay:0.63s;
+animation-delay:0.63s;
+}
+
+#frotateG_06{
+right:15px;
+bottom:15px;
+-moz-animation-delay:0.72s;
+-webkit-animation-delay:0.72s;
+-ms-animation-delay:0.72s;
+-o-animation-delay:0.72s;
+animation-delay:0.72s;
+}
+
+#frotateG_07{
+left:52px;
+bottom:0;
+-moz-animation-delay:0.81s;
+-webkit-animation-delay:0.81s;
+-ms-animation-delay:0.81s;
+-o-animation-delay:0.81s;
+animation-delay:0.81s;
+}
+
+#frotateG_08{
+left:15px;
+bottom:15px;
+-moz-animation-delay:0.9s;
+-webkit-animation-delay:0.9s;
+-ms-animation-delay:0.9s;
+-o-animation-delay:0.9s;
+animation-delay:0.9s;
+}
+
+@-moz-keyframes f_fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-webkit-keyframes f_fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-ms-keyframes f_fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@-o-keyframes f_fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+@keyframes f_fadeG{
+0%{
+background-color:#000000}
+
+100%{
+background-color:#FFFFFF}
+
+}
+
+/*end of LOADING************************************************************************/
+	

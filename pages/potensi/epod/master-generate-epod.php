@@ -78,6 +78,27 @@ while($data=mysqli_fetch_array($row)){
 		}
 	} //eof spitdosen
 }
+
+$query_update = mysqli_query($Open,"SELECT kodedp FROM exoxpotensi 
+				WHERE kodedp NOT IN (SELECT kodedp FROM exoxpotensi GROUP BY kodedp HAVING COUNT(*) > 1)");
+
+while($data_qu=mysqli_fetch_array($query_update)){
+	mysqli_query($Open, "UPDATE exoxpotensi SET epodpot = '1' WHERE kodedp = '".$data_qu['kodedp']."' ");
+}
+
+$query_update = "UPDATE exoxpotensi AS t
+		  JOIN 
+		    ( SELECT MIN(id) MinID
+		      FROM exoxpotensi
+		      GROUP BY kodedp
+		      HAVING COUNT(*) > 1
+		    ) AS m 
+		    ON t.id = m.MinID
+		SET t.epodpot = '1'";
+
+
+mysqli_query($Open,$query_update);
+
 }
 
 ?>

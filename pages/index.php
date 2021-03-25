@@ -6,7 +6,7 @@ if(!isset($_SESSION['id_user'])){
 		<p>Sistem Logout. Anda harus melakukan Login kembali.</p>
 		<button type='button' onclick=location.href='../'>Back</button>");
 }
-if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_SESSION['hak_akses']!="Operator"){
+if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_SESSION['hak_akses']!="Operator" && $_SESSION['hak_akses']!="Mahasiswa" && $_SESSION['hak_akses']!="Dosen" && $_SESSION['hak_akses']!="Prodi"){
     die("<b>Oops!</b> Access Failed.
 		<p>Anda Bukan Admin.</p>
 		<button type='button' onclick=location.href='../'>Back</button>");
@@ -101,6 +101,15 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 
 		.fileContainer [type=file] {
 		    cursor: pointer;
+		}
+
+		iframe {
+		  position: absolute;
+		  top: 0;
+		  left: 0;
+		  width: 100%;
+		  height: 100%;
+		  border: 0;
 		}
 	</style>
 </head>
@@ -208,7 +217,7 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 						</ul>
 					</li>
 					<li class="has-sub">
-						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-ios-list-outline bg-yellow"></i><span>Quisioner</span></a>
+						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner</span></a>
 						<ul class="sub-menu">
 							<li><a href="index.php?page=form-view-data-edom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOM</a></li>
 							<li><a href="index.php?page=form-view-data-epom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EPOM</a></li>
@@ -231,11 +240,90 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 							<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;EPOD & EDOP</a></li>
 						</ul>
 					</li>
-					<li><a href="index.php?page=for-view-data-monitoring"><i class="ion-ios-eye bg-blue"></i><span>Monitoring</span></a></li>
+					<?php } ?> <!-- EOF Menu Admin -->
+
+					<!-- Menu Mahasiswa -->
+					<?php if($_SESSION['hak_akses'] == 'Mahasiswa'){?>
+
+					<li><a href="index.php?page=frame-edom"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EDOM</span></a></li>
+
+					<li><a href="index.php?page=frame-epom"><i class="ion-ios-list-outline bg-blue"></i><span>Quesioner EPOM</span></a></li>
+
+					<?php } ?> <!-- EOF Menu Mahasiswa -->
+
+					<!-- Menu Dosen -->
+					<?php if($_SESSION['hak_akses'] == 'Dosen'){?>
+
+					<li><a href="index.php?page=frame-epod"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EPOD</span></a></li>
+					<li><a href="index.php?page=frame-epod"><i class="ion-document-text bg-blue"></i><span>Resume EDOM</span></a></li>
+					<li><a href="index.php?page=frame-epod"><i class="ion-document-text bg-green"></i><span>Resume EDOP</span></a></li>
+
+					<?php } ?> <!-- EOF Menu Dosen -->
+
+					<!-- Menu Prodi -->
+					<?php if($_SESSION['hak_akses'] == 'Prodi'){?>
+
+					<li><a href="index.php?page=frame-edop"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EDOP</span></a></li>
+
+					<?php } ?> <!-- EOF Menu Prodi -->
+
+					<?php if($_SESSION['hak_akses'] == 'Admin'){?>
+					<li class="has-sub">
+						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-ios-eye bg-blue"></i><span>Monitoring</span></a>
+						<ul class="sub-menu">
+							<li class="has-sub">
+								<a href="javascript:;"><b class="caret pull-right"></b><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOM</a>
+								<ul class="sub-menu">
+									<li><a href="index.php?page=view-data-potensi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekap Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - DPMK</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.02 - KP</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.03 - Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.04 - Prodi Kelas</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.05 - Rek. Dosen</a></li>
+								</ul>
+							</li>
+
+							<li class="has-sub">
+								<a href="javascript:;"><b class="caret pull-right"></b><i class="menu-icon fa fa-caret-right"></i> &nbsp;EPOM</a>
+								<ul class="sub-menu">
+									<li><a href="index.php?page=view-data-potensi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekap Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - Kelas</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.02 - Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.03 - Jurusan</a></li>
+								</ul>
+							</li>
+
+							<li class="has-sub">
+								<a href="javascript:;"><b class="caret pull-right"></b><i class="menu-icon fa fa-caret-right"></i> &nbsp;EPOD</a>
+								<ul class="sub-menu">
+									<li><a href="index.php?page=view-data-potensi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.02 - Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Nilai</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekapitulasi</a></li>
+								</ul>
+							</li>
+
+							<li class="has-sub">
+								<a href="javascript:;"><b class="caret pull-right"></b><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOP</a>
+								<ul class="sub-menu">
+									<li><a href="index.php?page=view-data-potensi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Potensi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - Dsn Mk Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.02 - Dosen Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.03 - Rekap Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.04 - Dosen Prodi</a></li>
+									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekapitulasi</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
 					
 					<li><a href="index.php?page=form-view-data-banner"><i class="ion-image bg-pink"></i><span>Banner</span></a></li>
 					<li><a href="index.php?page=backup-data"><i class="ion-ios-cloud bg-blue"></i><span>Backup Database</span></a></li>
-					<?php } ?>
+					<?php } ?> <!-- EOF Menu Admin -->
+
 					<li>&nbsp;</li>
 					<li><a href="../restric/logout.php"><i class="ion-log-out bg-dark"></i><span>Log Out</span></a></li>
 					<!-- begin sidebar minify button -->
@@ -363,6 +451,12 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					case 'delete-data-penugasan': include "../pages/referensi/penugasan/delete-data-penugasan.php"; break;
 					case 'deleteall-data-penugasan': include "../pages/referensi/penugasan/deleteall-data-penugasan.php"; break;
 
+					/*QUESIONER EDOM*/
+					case 'frame-edom': include "../pages/isiquesioner/frame-edom.php"; break;
+					case 'frame-epom': include "../pages/isiquesioner/frame-epom.php"; break;
+					case 'frame-epod': include "../pages/isiquesioner/frame-epod.php"; break;
+					case 'frame-edop': include "../pages/isiquesioner/frame-edop.php"; break;
+
 					/*GENERATE POTENSI EDOM EPOM*/
 					case 'form-view-generate-edom': include "../pages/potensi/edom/form-view-generate-edom.php"; break;
 					case 'form-master-generate-edom': include "../pages/potensi/edom/form-master-generate-edom.php"; break;
@@ -374,6 +468,10 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					case 'form-master-generate-epod': include "../pages/potensi/epod/form-master-generate-epod.php"; break;
 					case 'master-generate-epod': include "../pages/potensi/epod/master-generate-epod.php"; break;
 					case 'delete-generate-epod': include "../pages/potensi/epod/delete-generate-epod.php"; break;
+
+					/*MONITORING*/
+					case 'view-data-potensi': include "../pages/monitoring/edom/view-data-potensi.php"; break;
+
 
 					case 'form-view-data-user': include "../pages/user/form-view-data-user.php"; break;
 					case 'form-master-data-user': include "../pages/user/form-master-data-user.php"; break;

@@ -10,6 +10,7 @@
 		if(mysqli_num_rows($sql)==1){
 			$qry = mysqli_fetch_array($sql);
 			$_SESSION['id']	= $qry['id'];
+			$_SESSION['idopt']	= $qry['id'];
 			$_SESSION['id_user']	= $qry['nama_user'];
 			$_SESSION['nama_user']	= $qry['nama'];
 			$_SESSION['hak_akses']	= $qry['hak_akses'];

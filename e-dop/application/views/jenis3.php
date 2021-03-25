@@ -1,0 +1,1 @@
+<input type="text" name="jawab_<?php echo $id;?>" class="skala" value="0"/>
