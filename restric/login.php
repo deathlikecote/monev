@@ -23,6 +23,9 @@
 				$perta = mysqli_query($Open,"SELECT * FROM m_periode ORDER BY perta DESC");
 				$rPerta = mysqli_fetch_array($perta);
 
+				$lap = mysqli_query($Open,"SELECT * FROM m_laporan");
+				$rLap = mysqli_fetch_array($lap);
+
 				$_SESSION['perta']		= $rPerta['perta'];
 				$_SESSION['perteks']	= $rPerta['periode'];
 				$_SESSION['utsuas']		= $rPerta['utsuas'];
@@ -31,6 +34,10 @@
 				$_SESSION['unit']		= $rProfil['unit'];
 				$_SESSION['pengelola']	= $rProfil['pengelola'];
 				$_SESSION['jabatan']	= $rProfil['jabatan'];
+				$_SESSION['logo_inst']	= $rProfil['logo'];
+				$_SESSION['judul_lap']	= $rLap['judul'];
+				$_SESSION['head_lap']	= $rLap['header'];
+				$_SESSION['foot_lap']	= $rLap['footer'];
 
 				$_SESSION['pesan'] = "Login Success!";
 				header("location:pages/");

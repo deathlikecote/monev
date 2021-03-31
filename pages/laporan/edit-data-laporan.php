@@ -24,6 +24,9 @@
 				footer='$footer' 
 				WHERE id='$id'");
 			if($update){
+				$_SESSION['judul_lap']	= $judul;
+				$_SESSION['head_lap']	= $header;
+				$_SESSION['foot_lap']	= $footer;
 				$_SESSION['pesan'] = "Good! Edit laporan success ...";
 				header("location:index.php?page=form-view-data-laporan");
 			}

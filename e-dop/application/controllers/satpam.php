@@ -42,15 +42,12 @@ class Satpam extends CI_Controller {
 	function ceking()
 	{
 		$nameuser	= $_POST['nameopt'];
-		$passuser	= $_POST['passopt'];
-		$progs	= $_POST['progs'];
-		$this->session->set_userdata('progs', $progs);
-//		$submitlogin= $_POST['submitlogin'];
+		$to			= $_POST['to'];
 		
 		$this->load->model('edopuser_model','edopuser');
 		
-		if ($nameuser && $passuser){
-			$cekopt = $this->edopuser->cek_opt($nameuser,$passuser);
+		if ($nameuser && $to){
+			$cekopt = $this->edopuser->cek_opt($nameuser,$to);
 			
 			if (is_array($cekopt)){
 				
@@ -66,7 +63,7 @@ class Satpam extends CI_Controller {
 		}
 		
 		//$arr['satu'] = $nameuser;
-		$arr['satu'] = $progs;
+		$arr['satu'] = $nameuser;
 		$arr['edoc'] = md5(date('hyhdhmhyhmhdhhh').$nameuser);
 		
 		echo json_encode($arr);

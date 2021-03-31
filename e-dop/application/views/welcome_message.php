@@ -291,7 +291,8 @@ background: linear-gradient(-140deg, #2d444f 0%,#2d444f 50%,#273841 51%,#273841 
 	<ul class="kotak">
 		<li class="clouds">
 			<form id="formlogin" action="satpam/ceking" method="post" >
-				<input style="background:none;border:none;color: white" type="text" id="nameopt" name="nameopt" value="<?php echo $nameuser ; ?>" placeholder="IDPRODI"/>
+				<input style="background:none;border:none;color: white" type="text" id="nameopt" name="nameopt" value="<?php echo $nameuser ; ?>"/>
+				<input style="background:none;border:none;color: white" type="hidden" id="to" name="to" value="<?=$to?>"/>
 				<!-- <button type="submit" id="submitlogin" name="submitlogin" >LOGIN</button> -->
 			</form>
 		</li>

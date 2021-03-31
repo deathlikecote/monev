@@ -23,10 +23,7 @@
 		border-radius: 60px;
 	}
 	
-	.banner{
-		height: auto;width:100%;
-	}	
-
+	
 	a.logout:hover {
 		
 		background-color: #e74c3c;
@@ -34,12 +31,17 @@
 	
 	html {
 		
+		margin: 0;
+		padding: 0;
+		padding-bottom: 100px;
 	}
 	
 	body {
 		
 		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
 		font-size: 12px;
+		margin: 0;		
+		padding: 0;		
 	}
 	
 	form {
@@ -63,7 +65,7 @@
 		/*height: 20px;*/
 		resize: vertical;
 	}
-/*
+
 	button {
 		
 		border		: none;
@@ -74,7 +76,7 @@
 		padding		: 10px;
 		width: 155px;		
 		/*display: block;*/
-	}*/
+	}
 	
 	button:hover {
 		
@@ -102,9 +104,9 @@
 	ul.kotak {
 		
 		list-style-type: none;
-		margin: 20px auto;
+		margin: 100px auto;
 		padding: 0;		
-		width: 100%;
+		width: 1120px;
 	}
 	
 	
@@ -112,8 +114,8 @@
 		
 		float: left;
 		font-weight: lighter;
-		font-size: 1.4em;
-		height: 230px;
+		font-size: 1em;
+		height: 250px;
 		margin: 5px;
 		padding: 10px;
 		text-align: center;
@@ -150,7 +152,7 @@
 	ul.kotak li div.imej {
 		
 		color: #ecf0f1;
-		font-size: 3em;
+		font-size: 5em;
 		/*font-weight: bold;*/
 		padding: 10px 0 30px 0;
 	}
@@ -164,7 +166,7 @@
 	
 	ul.kotak li div.judul {
 		
-		font-size	: 1.3em;
+		font-size	: 2em;
 		font-weight: bold;
 	} 
 	
@@ -190,12 +192,12 @@
 	}
 	
 	ul.kotak li.xinfo div {
-		font-size: 0.8em;
-		padding: 20px;
+		font-size: 1.3em;
+		padding: 25px;
 	}
         
 	ul.kotak li.xinfo div.ling {
-		font-size: 0.8em;
+		font-size: 1.3em;
 		padding: 5px;
 	}
 	
@@ -248,7 +250,7 @@
 		
 		float: left;
 		font-weight: lighter;
-		font-size: 1.3em;
+		font-size: 1em;
 		height: 45px;
 		margin: 5px;
 		padding: 10px;
@@ -299,7 +301,7 @@
 	
 	ul.kotak2 li div.judul {
 		
-		font-size	: 1em;
+		font-size	: 1.6em;
 		font-weight: bold;
 	} 
 	
@@ -311,7 +313,7 @@
 	
 	ul.kotak2 li.petunjuk div.keterangan {
 		
-		font-size: 0.8em;
+		font-size: 1.1em;
 		text-align: left;
 		padding: 5px 30px;
 	}
@@ -339,7 +341,7 @@
 		padding: 10px 5px;
 		/*border-bottom: 1px solid #ecf0f1;*/
 		display: block;
-		font-size: 1.4em;
+		font-size: 2em;
 		text-align: left;
 	}
 	
@@ -353,7 +355,7 @@
 	
 	ul.kotak2 li.quiz div.parameter div.pertanyaan{
 		
-		font-size: 0.8em;
+		font-size: 1.2em;
 		/*float: left;*/
 		text-align: left;
 		/*width: 3000px;*/
@@ -364,7 +366,7 @@
 	}
 	
 	ul.kotak2 li.quiz div.parameter div.jawabanx{
-		font-size: 1.6em;
+		font-size: 3em;
 	}
 	
 	ul.kotak2 li.quiz div.parameter div.komeNsave {
@@ -375,12 +377,12 @@
 	}
         
 	ul.kotak2 li.quiz div.parameter div.komeNsave span{
-		font-size: em;
+		font-size: 1.2em;
 	}
 	
 	ul.kotak2 li.quiz div.parameter div.jawaban{
 		
-		font-size: 0.8em;
+		font-size: 0.9em;
 		/*float: left;*/
 		text-align: right;
 		/*width: 250px;*/
@@ -393,8 +395,8 @@
 	}
 	
 	ul.kotak2 li.xinfo div {
-		font-size: 0.8em;
-		padding: 5px;
+		font-size: 1.3em;
+		padding: 10px;
 	}
 	
 	ul.kotak2 li.xinfo div b {
@@ -416,7 +418,7 @@
 		
 		/*border-bottom	: 1px solid #ecf0f1;*/
 		display 		: block;
-		font-size		: 0.8em;
+		font-size		: 0.6em;
 		font-weight		: normal;
 	}
 
@@ -574,17 +576,6 @@
 		margin-top: 10px;
 	}
 		
-	tr.rownilai td {
-		border-bottom: 1px solid #7f8c8d;
-		padding: 5px;
-		
-	}
-	
-	table.tablenilai tr th{
-		padding: 5px;
-		/*background-color: red;*/
-	}
-	
 	@media only screen and (max-width : 1119px) {
 		
 		html{
@@ -598,8 +589,8 @@
 		
 		ul.kotak, ul.kotak2 {
 			
-			width: 100%;
-			margin-top: 10px auto;
+			width: 840px;
+			margin: 70px auto;
 		}
 		
 		ul.kotak2 li.quiz {
@@ -663,33 +654,35 @@
 	body {
 		
 		font-family: "Segoe UI", Frutiger, "Frutiger Linotype", "Dejavu Sans", "Helvetica Neue", Arial, sans-serif;
-		font-size: 16px;
+		font-size: 12px;
+		margin: 0;		
+		padding: 0;		
 	}
 	
 		ul.kotak, ul.kotak2 {
 			
-			width: 100%;
-			margin-top: 10px;
+			width: 560px;
+			/*margin: 50px auto;*/
 		}
 		
 		ul.kotak2 li.quiz {
 			
-			width: 530px;
+			width: 100%;
 		}		
 		
 		ul.kotak2 li.petunjuk {
 
-			width: 530px;
+			width: 100%;
 		}
 		
 		ul.kotak2 li.xheader {
 			
-			width: 530px;
+			width: 100%;
 		} 
 		
 		ul.kotak2 li.xinfo {
 			
-			width: 530px;
+			width: 100%;
 		} 
 		
 		ul.kotak2 li.quiz div.keterangan {
@@ -715,18 +708,18 @@
 		
 		ul.kotak, ul.kotak2 {
 			
-			width: 100%;
-			margin: 10px auto;
+			width: 280px;
+			margin: 30px auto;
 		}
 		
 		ul.kotak2 li.quiz {
 			
-			width: 250px;
+			width: 100%;
 		}
 		
 		ul.kotak2 li.petunjuk {
 
-			width: 250px;
+			width: 100%;
 		}
 		
 		ul.kotak2 li.quiz div.parameter div.pertanyaan{
@@ -769,7 +762,7 @@
 		
                 
 		/*color: #ecf000;*/
-		font-size: 3.8em;
+		font-size: 5em;
 		/*font-weight: bold;*/
 		padding: 70px 0;
                 height: 250px;
@@ -778,7 +771,7 @@
 	li.mm2item div.imej2 span {
 		
 		display: block;
-		font-size: 0.27em;
+		font-size: 0.2em;
 		font-weight: lighter;
 	}
 /*        li.mm2item div.judul {

@@ -8,9 +8,9 @@ class Edopuser_model extends MY_Model {
     }
     
     function get_coopt($codos) {
-        $this->dbplm = $this->load->database('plm', TRUE);
-        $this->dbplm->where('username',$codos);
-        $query = $this->dbplm->get('m_user');
+        $this->db = $this->load->database('default', TRUE);
+        $this->db->where('kodeprodi',$codos);
+        $query = $this->db->get('m_prodi');
         return $query;
     }
 	
@@ -34,26 +34,36 @@ class Edopuser_model extends MY_Model {
             return 'Anda tidak terdatar sebagai user';
         }
 	}
+
+	function get_perta($to) {
+        $this->db->where('jenis', strtoupper($to));
+        $query = $this->db->get('m_periode');
+        return $query;
+    }
     
-    function cek_opt($kode,$pass) {
+    function cek_opt($kode,$to) {
 
 		$que = $this->get_coopt($kode);
         if ($que->num_rows() > 0) {
 			
-            $rowdos = $que->row();            
-            if ($rowdos->password == md5($pass)) {
+            $rowdos = $que->row();   
+
+              $ques = $this->get_perta($to);
+                if ($ques->num_rows() > 0) {
+                    
+                    $rows = $ques->row(); 
+                }         
 				$newdata = array(
 								'idopt'     => $rowdos->id,
-								'nimopt'    => $rowdos->username,
-								'namopt'   => $rowdos->nama,
-								'emaopt'   => $rowdos->passtext
+								'nimopt'    => $rowdos->kodeprodi,
+								'namopt'   => $rowdos->namaprodi,
+								'thnakd'   => $rows->perta,
+                                'tgl_awal'   => $rows->tglawal,
+                                'tgl_akhir'   => $rows->tglakhir
 							);
 
 				return $newdata;					
-            } else {
-				
-                return 'Mohon maaf <span>IDPRODI</span> dan/atau <span>PASSWORD</span> anda tidak sesuai';
-            }
+          
         } else {
 			
             return 'Mohon maaf <span>IDPRODI</span> dan/atau <span>PASSWORD</span> anda tidak sesuai.';

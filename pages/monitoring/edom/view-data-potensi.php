@@ -75,7 +75,7 @@
 			<div class="panel-body">
 				 <!-- EOF Generate -->
 
-				<form action="index.php?page=form-view-generate-epod" name="isian" class="form-horizontal" method="POST" >
+				<form action="index.php?page=view-data-potensi" name="isian" class="form-horizontal" method="POST" >
 				<div class="form-inline"  style="margin-bottom: 20px">
 					<div class="form-group">
 					

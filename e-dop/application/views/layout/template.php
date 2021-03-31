@@ -1,5 +1,5 @@
 <?php echo $this->load->view('layout/header.php'); ?>
-<!-- <a href="<?php echo base_url();?>satpam/logout" class="logout peterriver"><br>Logout</a> -->
+<div style="margin-top: -60px">
 <input type="hidden" name="jmlpertanyaan" id="jmlpertanyaan" value="<?php echo $no-1;?>" />
 	<ul class="kotak2" >
 		<li class="xheader asbestos">
@@ -20,7 +20,7 @@
 		
 		
 		
-		<a href="<?php echo base_url();?>main_menu/option/<?php echo $this->session->userdata('progs'); ?>/<?php echo $edok; ?>">
+		<a href="<?php echo base_url();?>main_menu/option/<?php echo $this->session->userdata('nimopt'); ?>/<?php echo $edok; ?>">
 		<li class="xinfo peterriver">
 			<div>
 				PILIH QUIZ
@@ -61,7 +61,7 @@ Pengolahan dan Pelaporan data dilakukan oleh PUSAT PENJAMINAN MUTU POLTEKPAR PAL
 		</li>
 	</ul>
 
-
+</div>
 <script>
 
 

@@ -23,6 +23,7 @@ class Welcome extends CI_Controller {
 	{
 		$this->session->sess_destroy();
 		$data['nameuser']	= $_GET['kdsn'];
+		$data['to']			= $_GET['to'];
 		$data['assets'] 	= $this->_asset_string;
 		$this->load->view('welcome_message',$data);
 	}

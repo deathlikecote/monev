@@ -4,7 +4,7 @@
 			<?php if(strlen($kodedosen) < 5) :?>
 			
 				<?php echo $kodedosen;?>
-			<span>
+			<span style="font-size: 0.3em;">
 				<?php echo ($namadosen)?$namadosen:'Nama Lengkap Dosen';?>				
 			</span>
 			<?php else:?>
@@ -14,7 +14,7 @@
 			</span>
 			<?php endif;?>
 		</div>
-		<div class="xtext">
+		<div class="xtext" style="font-size: 1em;">
 			<?php echo ($namamk)?$namamk:'NAMA MATA KULIAH';?> (<?php echo $kodemk;?>)		
 		</div>
 		<?php echo ($done_d)?image_asset('icons/w_tick.png','',array('class'=>'icon')):image_asset('icons/con_compose-3.png','',array('class'=>'icon'));?>

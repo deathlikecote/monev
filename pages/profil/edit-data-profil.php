@@ -31,7 +31,8 @@
 	}else{
 		$logo_unit		= 'logo_unit.'.$ext_unit;
 	}
-
+	$_SESSION['logo_inst']	= $logo_unit;
+	
 	$fav 	= "favicon.ico";
 		
 		if (empty($_POST['nama']) || empty($_POST['alamat']) || empty($_POST['unit']) || empty($_POST['pengelola']) || empty($_POST['jabatan'])) {

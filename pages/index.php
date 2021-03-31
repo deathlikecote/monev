@@ -70,6 +70,10 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
     <link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker.css" rel="stylesheet" />
     <link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-fontawesome.css" rel="stylesheet" />
     <link href="../assets/plugins/jquery-simplecolorpicker/jquery.simplecolorpicker-glyphicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../assets/plugins/amcharts/samples/style.css" type="text/css">
+	  <script src="../assets/plugins/amcharts/amcharts/amcharts.js" type="text/javascript"></script>
+	  <script src="../assets/plugins/amcharts/amcharts/radar.js" type="text/javascript"></script>
+	  <script src="../assets/plugins/amcharts/amcharts/serial.js" type="text/javascript"></script>
 	<!-- ================== END PAGE LEVEL STYLE ================== -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
@@ -255,8 +259,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					<?php if($_SESSION['hak_akses'] == 'Dosen'){?>
 
 					<li><a href="index.php?page=frame-epod"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EPOD</span></a></li>
-					<li><a href="index.php?page=frame-epod"><i class="ion-document-text bg-blue"></i><span>Resume EDOM</span></a></li>
-					<li><a href="index.php?page=frame-epod"><i class="ion-document-text bg-green"></i><span>Resume EDOP</span></a></li>
+					<li><a href="index.php?page=resume-edom"><i class="ion-document-text bg-blue"></i><span>Resume EDOM</span></a></li>
+					<li><a href="index.php?page=resume-edop"><i class="ion-document-text bg-green"></i><span>Resume EDOP</span></a></li>
 
 					<?php } ?> <!-- EOF Menu Dosen -->
 
@@ -264,6 +268,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					<?php if($_SESSION['hak_akses'] == 'Prodi'){?>
 
 					<li><a href="index.php?page=frame-edop"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EDOP</span></a></li>
+					<li><a href="index.php?page=resume-epom"><i class="ion-document-text bg-blue"></i><span>Resume EPOM</span></a></li>
+					<li><a href="index.php?page=resume-epod"><i class="ion-document-text bg-green"></i><span>Resume EPOD</span></a></li>
 
 					<?php } ?> <!-- EOF Menu Prodi -->
 
@@ -275,8 +281,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 								<a href="javascript:;"><b class="caret pull-right"></b><i class="menu-icon fa fa-caret-right"></i> &nbsp;EDOM</a>
 								<ul class="sub-menu">
 									<li><a href="index.php?page=view-data-potensi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Daftar Potensi</a></li>
-									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekap Potensi</a></li>
-									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - DPMK</a></li>
+									<li><a href="index.php?page=view-data-rekapitulasi"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Rekap Potensi</a></li>
+									<li><a href="index.php?page=report01-edom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.01 - DPMK</a></li>
 									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.02 - KP</a></li>
 									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.03 - Prodi</a></li>
 									<li><a href="index.php?page=form-view-generate-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;R.04 - Prodi Kelas</a></li>
@@ -456,6 +462,10 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					case 'frame-epom': include "../pages/isiquesioner/frame-epom.php"; break;
 					case 'frame-epod': include "../pages/isiquesioner/frame-epod.php"; break;
 					case 'frame-edop': include "../pages/isiquesioner/frame-edop.php"; break;
+					case 'resume-edom': include "../pages/isiquesioner/resume-edom.php"; break;
+					case 'resume-edop': include "../pages/isiquesioner/resume-edop.php"; break;
+
+
 
 					/*GENERATE POTENSI EDOM EPOM*/
 					case 'form-view-generate-edom': include "../pages/potensi/edom/form-view-generate-edom.php"; break;
@@ -471,6 +481,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 
 					/*MONITORING*/
 					case 'view-data-potensi': include "../pages/monitoring/edom/view-data-potensi.php"; break;
+					case 'view-data-rekapitulasi': include "../pages/monitoring/edom/view-data-rekapitulasi.php"; break;
+					case 'report01-edom': include "../pages/monitoring/edom/report01-edom.php"; break;
 
 
 					case 'form-view-data-user': include "../pages/user/form-view-data-user.php"; break;
@@ -579,8 +591,15 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 			App.init();
 			TableManageResponsive.init();
 			FormPlugins.init();
+
+			$('#custom1').dataTable( {
+			  "searching": false,
+			  "lengthChange": false
+			} );
 		});
 
+		$('.select2').select2();
+		
 		$('#pesaneditor').wysihtml5({
 		"font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
 		"emphasis": true, //Italics, bold, etc. Default true
@@ -591,6 +610,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 		"color": false, //Button to change color of font  
 		"blockquote": false
 	});	
+
+
 	</script>
 </body>
 </html>

@@ -175,7 +175,7 @@ class Main_menu extends MY_Controller {
 		
 		$data['assets'] = $this->_asset_string;
 		$this->load->model('edoppotensi_model','edoppotensi');			
-		$que = $this->edoppotensi->daftar_get( NULL, NULL, 'idprogstudi = "'.$this->session->userdata('progs').'"', NULL, 'done_d asc');
+		$que = $this->edoppotensi->daftar_get( NULL, NULL, 'idprogstudi = "'.$this->session->userdata('nimopt').'"', NULL, 'done_d asc');
 		
 		$data['kotak'] = '';
 		$data['kewajiban'] = $que->num_rows();
