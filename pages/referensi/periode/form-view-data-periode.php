@@ -32,11 +32,54 @@
 				</div>
 				<h4 class="panel-title">Results <span class="text-info"><?php echo mysqli_num_rows($tampilUsr);?></span> rows for "Data Periode"</h4>
 			</div>
-            <div class="alert alert-success fade in">
+            <div class="alert alert-info fade in">
 				<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-				<i class="fa fa-info fa-2x pull-left"></i> Gunakan button di sebelah kanan setiap baris tabel untuk menuju instruksi edit dan hapus ...
+				<i class="fa fa-info fa-2x pull-left"></i> Pastikan lakukan backup terlebih dahulu sebelum melakukan <strong>setting perta</strong>
 			</div>
 			<div class="panel-body">
+				<form action="index.php?page=edit-perta" name="isian" class="form-horizontal" method="POST" >
+
+				<div class="form-inline"  style="margin-bottom: 20px">
+					<div class="form-group">
+					
+		                <div class="col-md-2 text-left">
+		                    <select id="perta" name="perta" class="form-control" >
+		                    	<?php
+		                            $per=1;
+		                            $sampaithn = date('Y')+1;
+		                            for($i=$sampaithn;$i>=2019;$i--){
+		                            if($per==2){
+		                                $pers = $i."2";  
+		                                ?>
+		                              <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
+ 										<?php
+		                                $per=1;
+		                              }
+
+		                              if($per==1){
+		                                $pers = $i."1";
+		                               ?>
+		                             <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
+
+		                               <?php
+		                                $per++;
+		                              }
+		                             
+		                           } 
+		                           ?>
+		                    </select>
+	                    </div>
+		            </div>
+
+					<div class="form-group">
+					
+		                <div class="col-md-2 text-left">
+		                    <button type="submit" name="edit" value="edit" class="btn btn-primary" onclick="return validateForm()"><i class="fa fa-edit"></i> &nbsp;Set Perta</button>
+	                    </div>
+		            </div>
+		            
+		        </div>
+		        </form>
 				<table id="data-table" class="table table-striped table-bordered nowrap" >
 					<thead>
 						<tr>
@@ -132,5 +175,17 @@
 		} );
 
 	})
+
+	function validateForm(isian)
+	{
+		var txt;
+		var r = confirm("Pastikan anda telah melakukan 'Generate & Backup' sebelum memulai perta baru?");
+		if (r == true) {
+		  return true;
+		} else {
+		  return false;
+		}
+
+	}
 
 </script>

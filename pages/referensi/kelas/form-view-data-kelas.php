@@ -112,28 +112,18 @@
 					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
+		                    	<option value="<?=$_SESSION['perta']?>" <?php echo ($pertax == $_SESSION['perta']) ? 'selected' : '';?>><?=$_SESSION['perta']?></option>
 		                    	<?php
+		                    		$cPerta = mysqli_query($Open, "SELECT TABLE_NAME AS cPerta FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".$DB."' AND (TABLE_NAME like 'edomparameter%' AND LENGTH(TABLE_NAME) > 14)");
 		                            $per=1;
 		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
+		                            while($rPerta = mysqli_fetch_array($cPerta)){
+		                            	$listPerta = substr($rPerta['cPerta'], 13);
+		                            	 ?>
+		                              	<option value="<?=$listPerta?>" <?php echo ($pertax == $listPerta) ? 'selected' : '';?>><?=$listPerta?></option>
  										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
+		                            }
+		                            
 		                           ?>
 		                    </select>
 	                    </div>

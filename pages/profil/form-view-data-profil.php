@@ -58,7 +58,7 @@
 						?>
 						<tr>
 							<td><?php echo $usr['nama']?></td>
-							<td><?php echo $usr['alamat']?></td>
+							<td><?php echo $usr['alamat'].', '.$usr['kota']?></td>
 							<td><img width="35" style="margin: -6px 0 0 -6px" alt="monev" src="../assets/img/<?=$usr['logo']?>"></td>
 							<td><?php echo $usr['unit']?></td>
 							<td><?php echo $usr['pengelola']?></td>

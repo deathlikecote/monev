@@ -5,9 +5,6 @@
 			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
 			}
-			$wheres = '1';
-			$cKodeprodi = '';
-			$ckelas = '';
 			$_SESSION['pesan'] ="";
 
 			if(isset($_POST['perta'])){
@@ -16,22 +13,12 @@
 				$pertax = $_SESSION['perta'];
 			}
 
-			$wheres .= " AND ta ='".$pertax."'";
-
-			if(isset($_POST['kdprodi'])){
-				if(!empty($_POST['kdprodi'])){
-					$cKodeprodi = $_POST['kdprodi'];
-					$wheres .= " AND idprogstudi ='".$_POST['kdprodi']."'";
-				}
-				
+			if($_SESSION['perta'] != $pertax){
+				$tax=$_POST['perta'];
+			}else{
+				$tax='';
 			}
-
-			if(isset($_POST['kelas'])){
-				if(!empty($_POST['kelas'])){
-					$ckelas = $_POST['kelas'];
-					$wheres .= " AND kelas ='".$_POST['kelas']."'";
-				}
-			}
+			
 		?>
 	</li>
 	<!-- <li>
@@ -46,12 +33,12 @@
 <h1 class="page-header">Data <small>Potensi EDOM&nbsp;</small></h1>
 <!-- end page-header -->
 <?php
-	
+	echo $tax;
 	include "../config/koneksi.php";
-	$tampilUsr=mysqli_query($Open, "SELECT * FROM edompotensi");
-	$hasil2=mysqli_query($Open, "SELECT DISTINCT nim FROM edompotensi");
+	$tampilUsr=mysqli_query($Open, "SELECT * FROM edompotensi$tax");
+	$hasil2=mysqli_query($Open, "SELECT DISTINCT nim FROM edompotensi$tax");
 	$row=mysqli_num_rows($hasil2);
-	$hasil3=mysqli_query($Open, "SELECT * FROM edompotensi WHERE done=1 GROUP BY nim");
+	$hasil3=mysqli_query($Open, "SELECT * FROM edompotensi$tax WHERE done=1 GROUP BY nim");
 	$row2=mysqli_num_rows($hasil3);
 	$nou=0;
 	$isi=0;
@@ -81,28 +68,18 @@
 					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
+		                    	<option value="<?=$_SESSION['perta']?>" <?php echo ($pertax == $_SESSION['perta']) ? 'selected' : '';?>><?=$_SESSION['perta']?></option>
 		                    	<?php
+		                    		$cPerta = mysqli_query($Open, "SELECT TABLE_NAME AS cPerta FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".$DB."' AND (TABLE_NAME like 'edomparameter%' AND LENGTH(TABLE_NAME) > 14)");
 		                            $per=1;
 		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
+		                            while($rPerta = mysqli_fetch_array($cPerta)){
+		                            	$listPerta = substr($rPerta['cPerta'], 13);
+		                            	 ?>
+		                              	<option value="<?=$listPerta?>" <?php echo ($pertax == $listPerta) ? 'selected' : '';?>><?=$listPerta?></option>
  										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
+		                            }
+		                            
 		                           ?>
 		                    </select>
 	                    </div>

@@ -2,14 +2,17 @@
 <?php
 	session_start();
 	include "../../../config/koneksi.php";
+
+	$perta	= $_POST['perta'];
+	if($_SESSION['perta'] != $perta){
+		$wheres = $perta;
+	}else{
+		$wheres = '';
+	}
+
 	if($_POST['jenis'] == 'pilihKodex') {
-		$perta	= $_POST['perta'];
-		if($_SESSION['perta'] != $perta){
-			$wheres = $perta;
-		}else{
-			$wheres = '';
-		}
-		$qry = mysqli_query($Open,"SELECT *, CONCAT(kodedosen,kodemk,idprogstudi,kelas) AS kodex FROM edompotensi$wheres where ta = '".$_SESSION['perta']."' and spote != 0 GROUP BY kodedosen,kodemk,idprogstudi,kelas ORDER BY concat(idprogstudi,kelas) ASC
+		
+		$qry = mysqli_query($Open,"SELECT *, CONCAT(kodedosen,kodemk,idprogstudi,kelas) AS kodex FROM edompotensi$wheres where ta = '".$wheres."' and spote != 0 GROUP BY kodedosen,kodemk,idprogstudi,kelas ORDER BY concat(idprogstudi,kelas) ASC
 			");
 
 		echo '<option value="" disabled selected>--Pilih Kode--</option>';
@@ -21,20 +24,19 @@
 		}else{
 			echo '<option value="">Data Tidak Ditemukan</option><br>';
 		}
-	} else if($_POST['jenis'] == 'pilihMkEdop') {
-		$perta	= $_POST['perta'];
-		$qry = mysqli_query($Open,"SELECT a.kdprodi, b.namaprodi FROM t_penugasan a, m_prodi b 
-			WHERE 
-			a.perta = '$perta' AND 
-			a.kodedosen = '".$_SESSION['id_user']."' AND
-			b.kodeprodi = a.kdprodi
-			GROUP BY a.kdprodi
+	} else if($_POST['jenis'] == 'pilihKodexR2') {
+		$qry = mysqli_query($Open,"SELECT *,CONCAT(idprogstudi,kelas) AS kodex 
+			FROM edompotensi$wheres WHERE 
+			ta = '".$wheres."' 
+			GROUP BY idprogstudi,kelas 
+			ORDER BY CONCAT(idprogstudi,kelas) ASC
 			");
 
-		echo '<option value="" disabled selected>--Pilih Prodi--</option>';
+		echo '<option value="" disabled selected>--Pilih Kode--</option>';
 		if(mysqli_num_rows($qry) > 0){
 			while ($r = mysqli_fetch_array($qry)) {
-				echo '<option value="'.$r['kdprodi'].'">'.$r['kdprodi'].' | '.$r['namaprodi'].'</option><br>';
+				$skode = $r["kodex"];
+				echo '<option value="'.$skode.'">'.$r['idprogstudi'].' | '.$r['kelas'].'</option><br>';
 			}
 		}else{
 			echo '<option value="">Data Tidak Ditemukan</option><br>';

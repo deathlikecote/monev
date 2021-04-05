@@ -162,35 +162,29 @@ class PDF_LineGraph extends FPDF {
 
 function Header()
 {
-    global $title;
-
-    // Arial bold 15
-    $this->SetFont('Arial','B',15);
-    // Calculate width of title and position
-    $w = $this->GetStringWidth($title)+6;
-    $this->SetX((210-$w)/2);
-    // Colors of frame, background and text
-    $this->SetDrawColor(0,80,180);
-    $this->SetFillColor(230,230,0);
-    $this->SetTextColor(220,50,50);
-    // Thickness of frame (1 mm)
-    $this->SetLineWidth(1);
-    // Title
-    $this->Cell($w,9,$title,1,1,'C',true);
-    // Line break
-    $this->Ln(10);
+   global $title;
+	$this->SetLeftMargin(20);
+    $this->Image('../../../assets/img/'.$_SESSION['logo_inst'],20,9,15);
+	$this->SetFont('Arial','B',9);
+	$this->Cell(16,5,'',0,0,'L');
+	$this->Cell(100,6,strtoupper($_SESSION['nama_pt']),0,0,'L');
+	$this->SetFont('Arial','I',7);
+	$this->Cell(55,6,$title,0,1,'R');
+	$this->SetFont('Arial','',9);
+	$this->Cell(16,6,'',0,0,'L');
+	$this->Cell(50,5,strtoupper($_SESSION['unit']),0,1,'L');		
+	$this->Ln(4);
 }
 
 function Footer()
 {
-    // Position at 1.5 cm from bottom
     $this->SetY(-15);
-    // Arial italic 8
-    $this->SetFont('Arial','I',8);
+    $this->SetFont('Arial','I',7);
     // Text color in gray
     $this->SetTextColor(128);
     // Page number
-    $this->Cell(0,10,'Page '.$this->PageNo(),0,0,'C');
+    $this->Cell(145,10,$_SESSION['foot_lap'],0,0,'L');
+    $this->Cell(25,10,'Hal. '.$this->PageNo().'/ {nb}',0,0,'C');
 }
 
 function ChapterTitle($label)

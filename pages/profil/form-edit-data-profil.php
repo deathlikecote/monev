@@ -45,7 +45,13 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Nama PT</label>
 						<div class="col-md-6">
-							<input type="text" name="nama" value="<?=$data['nama']?>" maxlength="64" class="form-control" />
+							<input type="text" name="nama" value="<?=$data['nama']?>"  class="form-control" />
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-md-3 control-label">Kota</label>
+						<div class="col-md-6">
+							<input type="text" name="kota" value="<?=$data['kota']?>" class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -64,19 +70,19 @@
 					<div class="form-group">
 						<label class="col-md-3 control-label">Unit</label>
 						<div class="col-md-6">
-							<input type="text" name="unit" value="<?=$data['unit']?>" maxlength="64" class="form-control" />
+							<input type="text" name="unit" value="<?=$data['unit']?>"  class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">Pengelola</label>
 						<div class="col-md-6">
-							<input type="text" name="pengelola" value="<?=$data['pengelola']?>" maxlength="64" class="form-control" />
+							<input type="text" name="pengelola" value="<?=$data['pengelola']?>"  class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label">Jabatan</label>
 						<div class="col-md-6">
-							<input type="text" name="jabatan" value="<?=$data['jabatan']?>" maxlength="64" class="form-control" />
+							<input type="text" name="jabatan" value="<?=$data['jabatan']?>"  class="form-control" />
 						</div>
 					</div>
 					<div class="form-group">

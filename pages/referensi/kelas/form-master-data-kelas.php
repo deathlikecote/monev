@@ -31,36 +31,8 @@
 			</div>
 			<div class="panel-body">
 				<form action="index.php?page=master-data-kelas" name="isian" class="form-horizontal" method="POST" enctype="multipart/form-data" >
-					<div class="form-group">
-		                <label for="perta" class="col-md-3 control-label">Perta</label>
-		                <div class="col-md-2">
-		                    <select id="perta" name="perta" class="form-control" >
-		                    	<?php
-		                            $per=1;
-		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
- 										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($_SESSION['perta'] == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
-		                           ?>
-		                    </select>
-		                </div>
-		            </div>
+					<input type="hidden" id="perta" name="perta" value="<?php echo $_SESSION['perta']; ?>">
+					
 
 		            <div class="form-group">
 						<label for="kdprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Prodi</label>

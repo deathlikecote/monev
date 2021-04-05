@@ -30,6 +30,7 @@
 				$_SESSION['perteks']	= $rPerta['periode'];
 				$_SESSION['utsuas']		= $rPerta['utsuas'];
 				$_SESSION['nama_pt']	= $rProfil['nama'];
+				$_SESSION['kota_pt']	= $rProfil['kota'];
 				$_SESSION['alamat_pt']	= $rProfil['alamat'];
 				$_SESSION['unit']		= $rProfil['unit'];
 				$_SESSION['pengelola']	= $rProfil['pengelola'];

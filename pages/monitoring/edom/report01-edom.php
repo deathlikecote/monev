@@ -34,7 +34,7 @@
 
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Report.01 <small>DPMK&nbsp;</small></h1>
+<h1 class="page-header">EDOM R.01 <small>(DPMK) Laporan Per Mata Kuliah&nbsp;</small></h1>
 <!-- end page-header -->
 <?php
 	
@@ -58,34 +58,24 @@
             
 			<div class="panel-body">
 
-				<form action="monitoring/edom/edomreport1-pdf.php" name="isian" class="form-horizontal" method="POST" >
+				<form action="monitoring/edom/edomreport1-pdf.php" name="isian" class="form-horizontal" method="GET" >
 				<div class="form-inline"  style="margin-bottom: 20px">
 					<div class="form-group">
 					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
+		                    	<option value="<?=$_SESSION['perta']?>" <?php echo ($pertax == $_SESSION['perta']) ? 'selected' : '';?>><?=$_SESSION['perta']?></option>
 		                    	<?php
+		                    		$cPerta = mysqli_query($Open, "SELECT TABLE_NAME AS cPerta FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".$DB."' AND (TABLE_NAME like 'edomparameter%' AND LENGTH(TABLE_NAME) > 14)");
 		                            $per=1;
 		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
+		                            while($rPerta = mysqli_fetch_array($cPerta)){
+		                            	$listPerta = substr($rPerta['cPerta'], 13);
+		                            	 ?>
+		                              	<option value="<?=$listPerta?>" <?php echo ($pertax == $listPerta) ? 'selected' : '';?>><?=$listPerta?></option>
  										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
+		                            }
+		                            
 		                           ?>
 		                    </select>
 	                    </div>
@@ -102,10 +92,15 @@
 		            <div class="form-group">
 		    			<div class="col-md-2 text-left">
 		    				<button type="submit" name="caridpmk" class="btn btn-success"><i class="fa fa-print"></i></button>
-	                    </select>
 		    			</div>
 		            </div>
 		           
+		           <div class="form-group">
+		    			<div class="col-md-2 text-left">
+		    				<a type="button" name="all" class="btn btn-primary" onclick="return cetakall()"><i class="fa fa-print"></i> All <span id="numberOf"></span></a>
+		    			</div>
+		            </div>
+
 		        </div>
 
 		          
@@ -128,6 +123,24 @@
 		$.post("monitoring/edom/master-lookup.php", {jenis:'pilihKodex', perta:perta}, function(result){
 			$('#kodex').html(result);
 		});
+	}
+
+	function cetakall(){
+		$('.loading').css({'visibility':'visible','display':'inline'});
+		var perta = $('#perta').val();
+		var no = 0;
+		var len = 0;
+		$("#kodex > option:not(:first)").each(function(i) {
+			len++;
+			var vals = this.value;
+			setTimeout(function(){
+		         window.location.href = 'monitoring/edom/edomreport1-pdf.php?kodex=' + vals +'&perta=' + perta;
+		         no++;
+		         $('#numberOf').html(no + ' dari ' + len);
+		    },500 + ( i * 1000 ));
+		});
+		$('.loading').css({'visibility':'hidden','display':'none'});
+		
 	}
 
 	$(document).ready(function(){

@@ -18,19 +18,26 @@ function konversi_tanggal($format, $tanggal="now", $bahasa="id"){
  return str_replace($en,$$bahasa,date($format,strtotime($tanggal)));
 }
 
+$sta=$_GET['perta'];
+$singper=$_GET['perta'];
+if($_SESSION['perta'] != $sta){
+	$sta=$_GET['perta'];
+}else{
+	$sta='';
+}
 
 $title='e-DOM Report.01';
 //$pdf = new PDF();
 $pdf = new PDF_onet();
 $pdf->AliasNbPages();
-$xkode = $_POST["kodex"];
+$xkode = $_GET["kodex"];
 //- hitung jumlah parameter kuesioner
-$qryp=mysqli_fetch_assoc(mysqli_query($Open, "select count(parameter) as vjpar from edomparameter"));
+$qryp=mysqli_fetch_assoc(mysqli_query($Open, "select count(parameter) as vjpar from edomparameter$sta"));
 $jpar=$qryp['vjpar'];
 
 //-edomtemp01
 mysqli_query($Open, "TRUNCATE TABLE edomtemp01");
-$qry01=mysqli_query($Open, "select kode, id_parameter, parameter, jenis, aspek, sum(v1) as jumlah from edomdata where kode='$xkode' group by kode,id_parameter") or die("error as:".mysql_error());
+$qry01=mysqli_query($Open, "select kode, id_parameter, parameter, jenis, aspek, sum(v1) as jumlah from edomdata$sta where kode='$xkode' group by kode,id_parameter") or die("error as:".mysql_error());
 while ($list=mysqli_fetch_array($qry01)) {
 	$vkode=$list['kode'];
 	$vid=$list['id_parameter'];
@@ -41,11 +48,12 @@ while ($list=mysqli_fetch_array($qry01)) {
 	mysqli_query($Open, "INSERT INTO edomtemp01 (kode,id_parameter,parameter,aspek,jumlah,jenis) VALUES ('$vkode', '$vid', '$vpar', '$vaspek', '$vjml', '$vjenis')") or die("error insert:".mysql_error());
 }
 
-// hitung jumlah siswa dari edomdata
-mysqli_query($Open, "update edomtemp01 t1 inner join (select kode, count(kode)/'$jpar' as jsiswa from edomdata where kode='$xkode') t2 on t1.kode = t2.kode set jmlmhs=jsiswa") or die("error jsiswa:".mysql_error());
+// hitung jumlah siswa dari edomdata$sta
+mysqli_query($Open, "update edomtemp01 t1 inner join (select kode, count(kode)/'$jpar' as jsiswa from edomdata$sta where kode='$xkode') t2 on t1.kode = t2.kode set jmlmhs=jsiswa") or die("error jsiswa:".mysql_error());
 //hitung score : par/as/dos pada tabel edomtemp01
 mysqli_query($Open, "update edomtemp01 set scorepar=jumlah/jmlmhs") or die("error scorepar:".mysql_error());
 mysqli_query($Open, "update edomtemp01 tt1 inner join (select kode, aspek, avg(scorepar) as vscoreas from edomtemp01 where kode='$xkode' and jenis !='3' group by aspek) tt2 on tt1.aspek = tt2.aspek set tt1.scoreas = tt2.vscoreas")  or die("error as:".mysql_error());
+
 mysqli_query($Open, "update edomtemp01 ttt1 inner join (select kode, avg(scoreas) as vscoredos from edomtemp01 where kode='$xkode') ttt2 on ttt1.kode = ttt2.kode set ttt1.scoredos = ttt2.vscoredos")  or die("error as:".mysql_error());
 
 
@@ -71,7 +79,7 @@ $subjudul="LAPORAN PER MATA KULIAH";
 $pdf->SetTitle($title);
 $pdf->SetDrawColor(168,168,168);
 
-$quepot=mysqli_query($Open, "select ta, per, utsuas, kodedosen, namadosen, idprogstudi, kodemk, namamk, kelas from edompotensi where kode='$xkode'") or die(mysql_error());
+$quepot=mysqli_query($Open, "select ta, per, utsuas, kodedosen, namadosen, idprogstudi, kodemk, namamk, kelas from edompotensi$sta where kode='$xkode'") or die(mysql_error());
 $sdata=mysqli_fetch_array($quepot);
 $skddsn=$sdata['kodedosen'];
 $snmdsn=$sdata['namadosen'];
@@ -79,14 +87,12 @@ $skdmk=$sdata['kodemk'];
 $snmmk=$sdata['namamk'];
 $skls=$sdata['kelas'];
 $sidp=$sdata['idprogstudi'];
-$sta=$sdata['ta'];
 $sper=$sdata['per'];
 $sutsuas=$sdata['utsuas'];
-$singper=$_SESSION['perta'];
 
-$periode="Periode ".$sta;
+$periode="Periode ".$singper;
 
-$queprodi=mysqli_query($plm, "select kodeprodi,namaprodi from m_prodi where kodeprodi='$sidp'") or die(mysql_error());
+$queprodi=mysqli_query($Open, "select kodeprodi,namaprodi from m_prodi where kodeprodi='$sidp'") or die(mysql_error());
 $squeprodi1=mysqli_fetch_array($queprodi);
 $snmprodi=$squeprodi1['namaprodi'];
 
@@ -335,7 +341,7 @@ $pdf->ln(1);
 
 $pdf->SetLeftMargin(30);
 $pdf->SetFont('Arial','',9);
-$quekom=mysqli_query($Open, "select kode, komentar from edompotensi where kode='$skodedsn' and komentar <> ''")  or die("error as:".mysql_error());
+$quekom=mysqli_query($Open, "select kode, komentar from edompotensi$sta where kode='$skodedsn' and komentar <> ''")  or die("error as:".mysql_error());
 $nou=0;
 while ($listkom=mysqli_fetch_array($quekom)){
 	$skom=$listkom['komentar'];
@@ -374,7 +380,7 @@ $pdf->ln(4);
 $pdf->SetLeftMargin(20);
 $tgl=konversi_tanggal(" j M Y").".";
 $pdf->ln(7);
-$pdf->Cell(70,$tgi,'Bandung, '.$tgl,0,1,"L");
+$pdf->Cell(70,$tgi,ucwords(strtolower($_SESSION['kota_pt'])).', '.$tgl,0,1,"L");
 $pdf->ln(5);
 $pdf->Cell(70,$tgi,'   - ttd -',0,1,"L");
 $pdf->ln(5);

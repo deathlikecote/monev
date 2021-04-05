@@ -12,6 +12,7 @@
 				
 	if ($_POST['edit'] == "edit") {
 	$nama	=$_POST['nama'];
+	$kota	=$_POST['kota'];
 	$alamat	=$_POST['alamat'];
 	$unit	=$_POST['unit'];
 	$pengelola	=$_POST['pengelola'];
@@ -31,7 +32,7 @@
 	}else{
 		$logo_unit		= 'logo_unit.'.$ext_unit;
 	}
-	$_SESSION['logo_inst']	= $logo_unit;
+	$_SESSION['logo_inst']	= $logo;
 	
 	$fav 	= "favicon.ico";
 		
@@ -42,6 +43,7 @@
 		else{
 			$update= mysqli_query ($Open,"UPDATE m_profil SET 
 				nama='$nama', 
+				kota='$kota',
 				alamat='$alamat', 
 				logo='$logo', 
 				unit='$unit', 
@@ -51,6 +53,7 @@
 				WHERE id='$id'");
 			if($update){
 				$_SESSION['nama_pt']	= $nama;
+				$_SESSION['kota_pt']	= $kota;
 				$_SESSION['alamat_pt']	= $alamat;
 				$_SESSION['unit']		= $unit;
 				$_SESSION['pengelola']	= $pengelola;
