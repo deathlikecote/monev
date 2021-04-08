@@ -43,18 +43,6 @@
 			<div class="panel-body">
 				<form action="index.php?page=edit-data-periode&id=<?=$id?>" name="isian" class="form-horizontal" method="POST" enctype="multipart/form-data" >
 
-		    		<!-- <div class="form-group">
-		                <label for="jenis" class="col-md-3 control-label">Jenis</label>
-		                <div class="col-md-2">
-		                    <select id="jenis" name="jenis" class="form-control" >
-		                      <option value="EDOM" <?php echo ($data['jenis'] == 'EDOM') ? 'selected' : '';?>>EDOM</option>
-		                      <option value="EPOM" <?php echo ($data['jenis'] == 'EPOM') ? 'selected' : '';?>>EPOM</option>
-		                      <option value="EPOD" <?php echo ($data['jenis'] == 'EPOD') ? 'selected' : '';?>>EPOD</option>
-		                      <option value="EDOP" <?php echo ($data['jenis'] == 'EDOP') ? 'selected' : '';?>>EDOP</option>
-		                    </select>
-		                </div>
-		            </div> -->
-
 		            <div class="form-group">
 		                <label for="periode" class="col-md-3 control-label">Periode</label>
 		                <div class="col-md-2">

@@ -5,6 +5,9 @@
 			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
 			}
+			$cekRow	=mysqli_query($Open,"SELECT tglakhir FROM m_periode WHERE jenis = 'EDOM'");
+			$row = mysqli_fetch_assoc($cekRow);
+			
 			$wheres = '1';
 			$cKodeprodi = '';
 			$ckelas = '';
@@ -47,7 +50,16 @@
 			</div>
             
 			<div class="panel-body">
+				<?php 
+					if(date('Y-m-d') < $row['tglakhir']){
+						echo '
+						 <div class="col-md-12 m-b-10 text-center">
+						<p>Generate dan Backup dapat dilakukan pada saat jadwal pengisian kuesioner selesai</p>
+						</div>';
+					}else{
+				 ?>
 	            <div class="col-md-12 m-b-10 text-center">
+	            	<p>Pastikan seluruh jadwal pengisian kuesioner telah selesai</p>
 	    				<a class="btn-sm btn-primary" onclick="generateAllEs()">Generate All Es</a>
 	            </div>
 
@@ -58,6 +70,7 @@
              	<div id="contentx" class="col-md-12 m-b-10 text-center">
 
              	</div>
+             	<?php } ?>
 	        </div>
 			</div>
 		</div>

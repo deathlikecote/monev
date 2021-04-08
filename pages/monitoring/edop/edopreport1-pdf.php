@@ -247,7 +247,16 @@ $pdf->Cell(18,$tgi,'('.number_format($nil3, 2, '.', '').')',0,0,"R");
 $pdf->ln(80);
 
 // --- komentar
-//$pdf->AddPage();
+$pdf->AddPage('P','A4');
+$pdf->setx(10);
+$pdf->SetLeftMargin(20);
+$pdf->SetFont('Arial','B',11);
+$pdf->Cell(170,6,$judul,0,1,"C");
+$pdf->SetFont('Arial','',12);
+$pdf->Cell(170,6,$subjudul,0,1,"C");
+$pdf->SetFont('Arial','',9);
+$pdf->Cell(170,5,$periode,0,1,"C");
+$pdf->ln(3);
 $pdf->HLevel1('Komentar','');
 $pdf->ln(1);
 

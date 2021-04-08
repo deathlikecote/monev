@@ -228,6 +228,7 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
 				<ul class="nav">
+					<li class="nav-header p-b-0">Perta : <?=$_SESSION['perta']?></li>
 					<li class="nav-header">Navigasi <i class="fa fa-paper-plane m-l-5"></i></li>
 					<?php if($_SESSION['hak_akses'] == 'Manajemen' || $_SESSION['hak_akses'] == 'Admin'){
 					?>
@@ -492,6 +493,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					case 'frame-epod': include "../pages/isiquesioner/frame-epod.php"; break;
 					case 'frame-edop': include "../pages/isiquesioner/frame-edop.php"; break;
 					case 'resume-edom': include "../pages/isiquesioner/resume-edom.php"; break;
+					case 'resume-epom': include "../pages/isiquesioner/resume-epom.php"; break;
+					case 'resume-epod': include "../pages/isiquesioner/resume-epod.php"; break;
 					case 'resume-edop': include "../pages/isiquesioner/resume-edop.php"; break;
 
 

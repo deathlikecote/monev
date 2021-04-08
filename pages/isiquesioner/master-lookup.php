@@ -12,7 +12,7 @@
 			GROUP BY a.kodemk
 			");
 
-		echo '<option value="" disabled selected>--Pilih MK--</option>';
+		echo '<option value="" selected>--Pilih MK--</option>';
 		if(mysqli_num_rows($qry) > 0){
 			while ($r = mysqli_fetch_array($qry)) {
 				echo '<option value="'.$r['kodemk'].'">'.$r['kodemk'].' | '.$r['namamk'].'</option><br>';
@@ -22,18 +22,13 @@
 		}
 	} else if($_POST['jenis'] == 'pilihMkEdop') {
 		$perta	= $_POST['perta'];
-		$qry = mysqli_query($Open,"SELECT a.kdprodi, b.namaprodi FROM t_penugasan a, m_prodi b 
-			WHERE 
-			a.perta = '$perta' AND 
-			a.kodedosen = '".$_SESSION['id_user']."' AND
-			b.kodeprodi = a.kdprodi
-			GROUP BY a.kdprodi
+		$qry = mysqli_query($Open,"SELECT * FROM tedopoverall where kodedosen='".strtoupper($_SESSION['id_user'])."' and ta='$perta'
 			");
 
-		echo '<option value="" disabled selected>--Pilih Prodi--</option>';
+		echo '<option value="" selected>--Pilih Prodi--</option>';
 		if(mysqli_num_rows($qry) > 0){
 			while ($r = mysqli_fetch_array($qry)) {
-				echo '<option value="'.$r['kdprodi'].'">'.$r['kdprodi'].' | '.$r['namaprodi'].'</option><br>';
+				echo '<option value="'.$r['idprogstudi'].'">'.$r['idprogstudi'].'</option><br>';
 			}
 		}else{
 			echo '<option value="">Data Tidak Ditemukan</option><br>';

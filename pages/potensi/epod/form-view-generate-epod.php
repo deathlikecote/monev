@@ -7,14 +7,7 @@
 			}
 			$cekRow	=mysqli_query($Open,"SELECT * FROM t_penugasan WHERE perta = '".$_SESSION['perta']."'");
 			$row = mysqli_num_rows($cekRow);
-			if($row < 1){
-				echo "
-				<script>
-					alert('Silahkan isi terlebih dahulu data Kelas Mhs Aktif dan Penugasan Dosen sebelum melakukan generate potensi');
-				</script>
-				";
-				echo "<meta http-equiv='refresh' content='0;url=index.php?page=form-view-data-kelas'>";
-			}
+			
 			
 			$wheres = '1';
 			$cKodeprodi = '';
@@ -45,12 +38,15 @@
 			}
 		?>
 	</li>
+	<?php 
+		if($row > 0){
+	 ?>
 	<li>
 		<a href="potensi/epod/export-generate-epod.php" class="btn btn-sm btn-success m-b-10"><i class="fa fa-file"></i> &nbsp;Export</a>
 	</li>
 	
 	<li><a href="index.php?page=form-master-generate-epod" class="btn btn-sm btn-primary m-b-10"><i class="fa fa-plus-circle"></i> &nbsp;Add</a></li>
-	
+	<?php } ?>
 </ol>
 
 
@@ -83,6 +79,12 @@
 				<i class="fa fa-info fa-2x pull-left"></i> Gunakan button di sebelah kanan setiap baris tabel untuk menuju instruksi edit dan hapus ...
 			</div>
 			<div class="panel-body">
+				<?php 
+					if($row < 1){
+						echo "Silahkan isi terlebih dahulu data Kelas Mhs Aktif dan Penugasan Dosen perta $_SESSION[perta] sebelum melakukan generate potensi
+						";
+					}else{
+				 ?>
 				<div class="row" style="margin-bottom: 30px">
 		        	<div class="col-md-12" >
 			            <?php 
@@ -204,7 +206,6 @@
 				              <?php echo strtoupper($usr['idprogstudi']); ?>
 				            </td>
 							<td class="text-center">
-								<!-- <a type="button" class="btn btn-info btn-icon btn-sm" href="index.php?page=form-edit-generate-epod&id=<?=$usr['id']?>" title="edit"><i class="fa fa-pencil fa-lg"></i></a> -->
 
 								<a type="button" class="btn btn-danger btn-icon btn-sm" data-toggle="modal" data-target="#Del<?php echo $usr['id']?>" title="delete"><i class="fa fa-trash-o fa-lg"></i></a>
 							</td>
@@ -230,6 +231,7 @@
 						?>
 					</tbody>
 				</table>
+			<?php } ?>
 			</div>
 		</div>
 		<!-- end panel -->

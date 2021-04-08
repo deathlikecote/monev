@@ -5,6 +5,10 @@
 			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
 			}
+
+			$cekRow	=mysqli_query($Open,"SELECT tglakhir FROM m_periode WHERE jenis = 'EDOM'");
+			$row = mysqli_fetch_assoc($cekRow);
+
 			$wheres = '1';
 			$cKodeprodi = '';
 			$ckelas = '';
@@ -58,35 +62,38 @@
 			</div>
             
 			<div class="panel-body">
-
+				<?php 
+					if(date('Y-m-d') < $row['tglakhir']){
+						echo '
+						 
+						<p>Perta/periode '.$_SESSION['perta'].' dapat dilihat pada '.$row['tglakhir'].'</p>
+						';
+					}
+				 ?>
 				<form action="index.php?page=resume-edom" name="isian" class="form-horizontal" method="POST" >
 				<div class="form-inline"  style="margin-bottom: 20px">
 					<div class="form-group">
 					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
+		                    	<?php 
+								if(date('Y-m-d') >= $row['tglakhir']){
+								 ?>
+
+		                    	<option value="<?=$_SESSION['perta']?>" <?php echo ($pertax == $_SESSION['perta']) ? 'selected' : '';?>><?=$_SESSION['perta']?></option>
+		                    	<?php } ?>
+
 		                    	<?php
+		                    		$cPerta = mysqli_query($Open, "SELECT TABLE_NAME AS cPerta FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".$DB."' AND (TABLE_NAME like 'edomparameter%' AND LENGTH(TABLE_NAME) > 14)");
 		                            $per=1;
 		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
+		                            while($rPerta = mysqli_fetch_array($cPerta)){
+		                            	$listPerta = substr($rPerta['cPerta'], 13);
+		                            	 ?>
+		                              	<option value="<?=$listPerta?>" <?php echo ($pertax == $listPerta) ? 'selected' : '';?>><?=$listPerta?></option>
  										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
+		                            }
+		                            
 		                           ?>
 		                    </select>
 	                    </div>
@@ -95,7 +102,7 @@
 					<div class="form-group">
 		    			<div class="col-md-2 text-left">
 		    				<select id="kodemk" name="kodemk" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih MK--</option>
+	                        <option value="" selected>--Pilih MK--</option>
 	                        
 	                    </select>
 		    			</div>
@@ -392,6 +399,13 @@ echo'
 		$.post("isiquesioner/master-lookup.php", {jenis:'pilihMkEdom', perta:perta}, function(result){
 			$('#kodemk').html(result);
 		});
+	}
+
+	function validateForm(){
+		if($('#kodemk').val() == '' || empty($('#kodemk').val()) ){
+			alert('Silahkan pilih MK terlebih dahulu');
+			return false;
+		}
 	}
 
 	$(document).ready(function(){

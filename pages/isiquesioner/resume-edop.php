@@ -5,6 +5,9 @@
 			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
 				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
 			}
+			$cekRow	=mysqli_query($Open,"SELECT tglakhir FROM m_periode WHERE jenis = 'EDOP'");
+			$row = mysqli_fetch_assoc($cekRow);
+
 			$wheres = '1';
 			$cKodeprodi = '';
 			$ckelas = '';
@@ -34,13 +37,9 @@
 
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Resume <small>EDOP&nbsp;</small></h1>
+<h1 class="page-header">Resume <small>EPOM&nbsp;</small></h1>
 <!-- end page-header -->
-<?php
-	
-	include "../config/koneksi.php";
-	$tampilUsr	=mysqli_query($Open,"SELECT a.*, b.nama FROM edompotensi a, m_siswa b WHERE $wheres AND (b.nim = a.nim) GROUP BY a.ta, a.per, a.utsuas, a.nim, a.idprogstudi, a.kelas ORDER BY a.ta, a.per, a.utsuas, a.nim, a.kodemk, a.idprogstudi, a.kelas asc");
-?>
+
 <!-- begin row -->
 <div class="row">
 	<!-- begin col-12 -->
@@ -58,35 +57,38 @@
 			</div>
             
 			<div class="panel-body">
-
+				<?php 
+					if(date('Y-m-d') < $row['tglakhir']){
+						echo '
+						 
+						<p>Perta/periode '.$_SESSION['perta'].' dapat dilihat pada '.$row['tglakhir'].'</p>
+						';
+					}
+				 ?>
 				<form action="index.php?page=resume-edop" name="isian" class="form-horizontal" method="POST" >
 				<div class="form-inline"  style="margin-bottom: 20px">
 					<div class="form-group">
 					
 		                <div class="col-md-2 text-left">
 		                    <select id="perta" name="perta" class="form-control" >
+		                    	<?php 
+									if(date('Y-m-d') >= $row['tglakhir']){
+								 ?>
+
+		                    	<option value="<?=$_SESSION['perta']?>" <?php echo ($pertax == $_SESSION['perta']) ? 'selected' : '';?>><?=$_SESSION['perta']?></option>
+
+		                    	<?php } ?>
 		                    	<?php
+		                    		$cPerta = mysqli_query($Open, "SELECT TABLE_NAME AS cPerta FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '".$DB."' AND (TABLE_NAME like 'edomparameter%' AND LENGTH(TABLE_NAME) > 14)");
 		                            $per=1;
 		                            $sampaithn = date('Y')+1;
-		                            for($i=$sampaithn;$i>=2017;$i--){
-		                            if($per==2){
-		                                $pers = $i."2";  
-		                                ?>
-		                              <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
+		                            while($rPerta = mysqli_fetch_array($cPerta)){
+		                            	$listPerta = substr($rPerta['cPerta'], 13);
+		                            	 ?>
+		                              	<option value="<?=$listPerta?>" <?php echo ($pertax == $listPerta) ? 'selected' : '';?>><?=$listPerta?></option>
  										<?php
-		                                $per=1;
-		                              }
-
-		                              if($per==1){
-		                                $pers = $i."1";
-		                               ?>
-		                             <option value="<?=$pers?>" <?php echo ($pertax == $pers) ? 'selected' : '';?>><?=$pers?></option>
-
-		                               <?php
-		                                $per++;
-		                              }
-		                             
-		                           } 
+		                            }
+		                            
 		                           ?>
 		                    </select>
 	                    </div>
@@ -136,7 +138,7 @@
 		   </div>
 		   <hr style="margin-top:2px;">
 		   
-<table style="width:100%;" class="responstable" >
+<table style="width:100%;" id="custom1" class="table table-striped table-bordered nowrap" >
   <tr>
     <th width="42" rowspan="2" scope="col">Mata Kuliah</th>
     <th colspan="3" scope="col">Aspek</th>
@@ -160,12 +162,12 @@ echo'
     <td>'.number_format($tn['C'],2).'</td>
     <td>'.number_format($tn['total'],2).'</td>
 	<td>'.number_format($tn['v1'],2).'</td>
-	<td><a href="edop/edopreport1-pdf.php?kode='.$tn['kedop'].'&perta='.$ta.'" target="_blank">Cetak PDF</a></td>
+	<td><a href="isiquesioner/edopreport1-pdf.php?kode='.$tn['kedop'].'&perta='.$ta.'" target="_blank">Cetak PDF</a></td>
   </tr>
   ';
 		}
 echo'</table>
-<a href="edop/edopreport2-pdf.php?kode='.$kodedp.'" target="_blank"><button class="btn btn-primary" style="width:100%;">Cetak PDF Overall</button></a><br><br>';
+<a href="isiquesioner/edopreport2-pdf.php?kode='.$kodedp.'&perta='.$ta.'" target="_blank"><button class="btn btn-primary" style="width:100%;">Cetak PDF Overall</button></a><br><br>';
 		
 //----------------------js overall---------------------------
 		echo'
@@ -347,6 +349,13 @@ echo'</div>	';
 		$.post("isiquesioner/master-lookup.php", {jenis:'pilihMkEdop', perta:perta}, function(result){
 			$('#kodeprodi').html(result);
 		});
+	}
+
+	function validateForm(){
+		if($('#kodeprodi').val() == '' || empty($('#kodeprodi').val()) ){
+			alert('Silahkan pilih Prodi terlebih dahulu');
+			return false;
+		}
 	}
 
 	$(document).ready(function(){
