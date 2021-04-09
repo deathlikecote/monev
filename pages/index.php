@@ -233,9 +233,9 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					<?php if($_SESSION['hak_akses'] == 'Manajemen' || $_SESSION['hak_akses'] == 'Admin'){
 					?>
 					<li><a href="./"><i class="ion-stats-bars bg-blue"></i><span>Dashboard</span> <span class="badge bg-primary pull-right">HOME</span></a></li>
-					<li><a href="index.php?page=form-view-data-banner"><i class="ion-image bg-pink"></i><span>Banner</span></a></li>
 					<?php } ?>
 					<?php if($_SESSION['hak_akses'] == 'Admin'){?>
+					<li><a href="index.php?page=form-view-data-banner"><i class="ion-image bg-pink"></i><span>Banner</span></a></li>
 					<li class="has-sub">
 						<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-ios-gear bg-purple"></i><span>Master</span></a>
 						<ul class="sub-menu">
@@ -354,10 +354,24 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 							</li>
 						</ul>
 					</li>
-					<li><a href="index.php?page=generate-all"><i class="ion-ios-cloud bg-blue"></i><span>Generate & Backup</span></a></li>
-					
-					<!-- <li><a href="index.php?page=backup-data"><i class="ion-ios-cloud bg-blue"></i><span>Backup Database</span></a></li> -->
 					<?php } ?> <!-- EOF Menu Admin -->
+
+					<?php if($_SESSION['hak_akses'] == 'Manajemen'){?>
+						<li class="has-sub">
+							<a href="javascript:;"><b class="caret pull-right"></b><i class="ion-ios-eye bg-pink"></i><span>Executive Summary</span></a>
+							<ul class="sub-menu">
+								<li><a href="index.php?page=es-grafik"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Grafik</a></li>
+								<li><a href="index.php?page=es-edom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Edom</a></li>
+								<li><a href="index.php?page=es-epom"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Epom</a></li>
+								<li><a href="index.php?page=es-edop"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Edop</a></li>
+								<li><a href="index.php?page=es-epod"><i class="menu-icon fa fa-caret-right"></i> &nbsp;Epod</a></li>
+							</ul>
+						</li>
+					<?php } ?>
+
+					<?php if($_SESSION['hak_akses'] == 'Admin'){?>
+						<li><a href="index.php?page=generate-all"><i class="ion-ios-cloud bg-blue"></i><span>Generate & Backup</span></a></li>
+					<?php } ?>
 
 					<li>&nbsp;</li>
 					<li><a href="../restric/logout.php"><i class="ion-log-out bg-dark"></i><span>Log Out</span></a></li>
@@ -544,6 +558,13 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 
 					case 'generate-all': include "../pages/generateall/generate-all.php"; break;
 
+					// ES GRAFIK
+					case 'es-grafik': include "../pages/es/es-grafik.php"; break;
+					case 'es-edom': include "../pages/es/es-edom.php"; break;
+					case 'es-epom': include "../pages/es/es-epom.php"; break;
+					case 'es-edop': include "../pages/es/es-edop.php"; break;
+					case 'es-epod': include "../pages/es/es-epod.php"; break;
+
 					case 'form-view-data-user': include "../pages/user/form-view-data-user.php"; break;
 					case 'form-master-data-user': include "../pages/user/form-master-data-user.php"; break;
 					case 'master-data-user': include "../pages/user/master-data-user.php"; break;
@@ -551,7 +572,7 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 					case 'edit-data-user': include "../pages/user/edit-data-user.php"; break;
 					case 'delete-data-user': include "../pages/user/delete-data-user.php"; break;
 					case 'reset-password': include "../pages/user/reset-password.php"; break;
-	
+					
 
 					case 'reset-passwordpeg': include "../pages/responden/reset-passwordpeg.php"; break;
 					case 'view-data-responden': include "../pages/responden/view-data-responden.php"; break;
@@ -642,6 +663,8 @@ if($_SESSION['hak_akses']!="Manajemen" && $_SESSION['hak_akses']!="Admin" && $_S
 	<script src="../assets/js/dashboard.min.js"></script>
 	<script src="../assets/js/apps.min.js"></script>
 	<script src="../assets/plugins/wysihtml5/dist/bootstrap3-wysihtml5.all.min.js"></script>
+	<script src="../assets/plugins/highcharts/js/highcharts.js"></script>
+	<script src="../assets/plugins/highcharts/js/modules/exporting.js"></script> 
 	<!-- ==== Tedsh script === -->
 	<!-- ================== END PAGE LEVEL JS ================== -->
 	
