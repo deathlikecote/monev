@@ -1,20 +1,22 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
-	
+class Welcome extends CI_Controller
+{
+
 	private $_asset_string = '';
 
-	public function __construct() {
-		
+	public function __construct()
+	{
+
 		parent::__construct();
-		 
+
 		//INISIALISASI $_asset_string
 		$this->_asset_string = '';
 		//> CSS
 		$this->_asset_string .= css_asset('bootstrap/css/bootstrap.css');
 		$this->_asset_string .= css_asset('bootstrap/slider/responsiveslides.css');
 		$this->_asset_string .= css_asset('bootstrap/slider/demo/demo.css');
-		
+
 		//> JS
 		$this->_asset_string .= js_asset('js/jquery-3.2.1.js');
 		$this->_asset_string .= js_asset('js/bootstrap.min.js');
@@ -24,24 +26,21 @@ class Welcome extends CI_Controller {
 		$this->_asset_string .= js_asset('jquery-1.8.3.min.js');
 		$this->_asset_string .= js_asset('jquery.form.js');
 		$this->_asset_string .= js_asset('responsiveslides.min.js');
-		
-	
 	}
 
-	public function index($nim, $xxx)
+	public function index()
 	{
 		$this->session->sess_destroy();
 		$data['assets'] 	= $this->_asset_string;
 		$data['nim']	= $this->input->get('nim');
 		$data['to']		= $this->input->get('to');
-		// $data['xxx']	= $this->input->get('xxx');
-		$this->load->view('welcome_message',$data);
+		$this->load->view('welcome_message', $data);
 	}
-	
+
 	public function color()
 	{
 		$this->load->view('color');
-	}	
+	}
 }
 
 /* End of file welcome.php */

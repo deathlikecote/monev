@@ -1,8 +1,9 @@
-<?php 
+<?php
 include "config/koneksi.php";
- ?>
+?>
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
 	<title>Login Template</title>
 	<meta charset="utf-8">
@@ -23,47 +24,49 @@ include "config/koneksi.php";
 	<!-- fontawesome JS -->
 
 </head>
+
 <body>
-	
+
 	<div class="container-fluid h-100">
 		<div class="row h-100 align-items-center justify-content-center">
 
 			<!-- BEGIN CONTENT -->
-			<div class="col-12 h-100" > <!-- id="login-container" -->
+			<div class="col-12 h-100">
+				<!-- id="login-container" -->
 				<div class="row h-100">
 
 					<!-- BEGIN LEFT CONTENT -->
 					<div class="col-12 col-sm-9 d-none d-lg-inline h-100 text-white p-0" id="left-content">
 						<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-						  <div class="carousel-inner">
-						  	<?php 
-						  	$a = 0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_banner ORDER BY tgl_upload DESC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                            	if($a == 0){
-	                            		$aktif = "active";
-	                            		$a++;
-	                            	}else{
-	                            		$aktif = "";
-	                            	}
-	                          ?>
-	                         
-						    <div class="carousel-item <?=$aktif?>">
-						      <img style="height: 100vh !important;" class="d-block w-100" src="assets/img/banner/<?=$tak['nama']?>">
-						    </div>
+							<div class="carousel-inner">
+								<?php
+								$a = 0;
+								$t = mysqli_query($Open, "SELECT * FROM m_banner ORDER BY tgl_upload DESC");
+								while ($tak = mysqli_fetch_array($t)) {
+									if ($a == 0) {
+										$aktif = "active";
+										$a++;
+									} else {
+										$aktif = "";
+									}
+								?>
 
-						     <?php } ?>
-	                          
-						  	 
-						  </div>
-						  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-						    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						  </a>
-						  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-						    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						    <span class="sr-only">Next</span>
-						  </a>
+									<div class="carousel-item <?= $aktif ?>">
+										<img style="height: 100vh !important;" class="d-block w-100" src="assets/img/banner/<?= $tak['nama'] ?>">
+									</div>
+
+								<?php } ?>
+
+
+							</div>
+							<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							</a>
+							<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							</a>
 						</div>
 						<div class="row h-100 align-items-center justify-content-center">
 
@@ -81,18 +84,18 @@ include "config/koneksi.php";
 					<div class="d-flex justify-content-end w-100" id="right-content">
 
 						<!-- BEGIN lOGIN -->
-						<div class="col-12 col-lg-3 pt-5 pb-5 bg-white" id="log-in" >
-							<div class="row align-items-start justify-content-center" >
+						<div class="col-12 col-lg-3 pt-5 pb-5 bg-white" id="log-in">
+							<div class="row align-items-start justify-content-center">
 								<div class="col-9">
 									<img src="assets/img/logo.png" alt="logo" class="logo mx-auto d-block mb-3" style="width: 80px">
 									<div class="w-100 mb-5 text-center" style="line-height: 1.2em;">MONEV STP BANDUNG<br><small>Pusat Penjaminan Mutu</small></div>
-								</div> 
-							</div> 
-							<div class="row h-50 align-items-center justify-content-center" >
-							<div class="col-9">
-								<div class="w-100 mb-3 text-center"><small>Silahkan login dengan akun anda</small></div>
+								</div>
+							</div>
+							<div class="row h-50 align-items-center justify-content-center">
+								<div class="col-9">
+									<div class="w-100 mb-3 text-center"><small>Silahkan login dengan akun anda</small></div>
 
-									<div class='pesan alert alert-danger col-sm-12'style="font-size:0.8em; display: none"><?=$_SESSION['pesan']?>
+									<div class='pesan alert alert-danger col-sm-12' style="font-size:0.8em; display: none"><?= $_SESSION['pesan'] ?>
 									</div>
 									<form method="post" class="mt-0" action="index.php?page=login&op=in" autocomplete="off">
 
@@ -100,7 +103,7 @@ include "config/koneksi.php";
 											<div class="input-group-prepend">
 												<span class="input-group-text bg-white text-primary"><i class="fas fa-user"></i></span>
 											</div>
-											<input type="search" name="nama_user" class="form-control" id="username" placeholder="Username" required="">
+											<input type="search" name="nama_user" class="form-control" id="username" placeholder="Username" required="" autofocus>
 										</div>
 
 										<div class="input-group mb-3">
@@ -127,7 +130,7 @@ include "config/koneksi.php";
 										</div>
 
 									</form>
-							</div>
+								</div>
 							</div>
 							<div class="col-12 text-center"><small>&copy;2021 All Rights Reserved</small></div>
 						</div> <!-- End div #log-in -->
@@ -143,15 +146,16 @@ include "config/koneksi.php";
 		</div>
 	</div> <!-- End div .container-fluid -->
 
-<?php
+	<?php
 	if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-	echo "<script>
+		echo "<script>
 	$(document).ready(function(){
 		$('.pesan').css('display', 'block');
 	})
 	</script>";
 	}
-	$_SESSION['pesan'] ="";
-?>
+	$_SESSION['pesan'] = "";
+	?>
 </body>
+
 </html>

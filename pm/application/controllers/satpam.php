@@ -1,6 +1,7 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Satpam extends CI_Controller {
+class Satpam extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -21,60 +22,60 @@ class Satpam extends CI_Controller {
 
 	public function __construct()
 	{
-		
-		parent::__construct();		
+
+		parent::__construct();
 	}
 
 	public function index()
 	{
 		echo $this->load->view('ditabs/info');
 	}
-	
-	private  function _cek_session() {
-		
-		if ($this->session->userdata('idopt')){
-			
+
+	private  function _cek_session()
+	{
+
+		if ($this->session->userdata('idopt')) {
+
 			$this->session->sess_destroy();
-			redirect( base_url().'maaf/' );			
+			redirect(base_url() . 'maaf/');
 		}
 	}
 
-			
+
 	function ceking()
 	{
 		$nameuser	= $_POST['nameopt'];
 		$to			= $_POST['to'];
-//		$submitlogin= $_POST['submitlogin'];
-		
-		$this->load->model('edomuser_model','edomuser');
-		
-		if ($nameuser){
+		//		$submitlogin= $_POST['submitlogin'];
+
+		$this->load->model('edomuser_model', 'edomuser');
+
+		if ($nameuser) {
 			$cekopt = $this->edomuser->cek_opt($nameuser, $to);
-			
-			if (is_array($cekopt)){
-				
+
+			if (is_array($cekopt)) {
+
 				$arr['error'] 	= '';
 				$this->session->set_userdata($cekopt);
+			} else {
 
-			}else{
-				
-				$arr['error'] = '<div class="error">'.$cekopt.'</div>';				
+				$arr['error'] = '<div class="error">' . $cekopt . '</div>';
 			}
-		}else{
-			
+		} else {
+
 			$arr['error'] = '<div class="error">Lengkapi <span>NIM</span> dan <span>PASSWORD</span>.</div>';
 		}
-		
+
 		$arr['satu'] = $nameuser;
-		$arr['edoc'] = md5(date('hyhdhmhyhmhdhhh').$nameuser);
-		if($to == 'edom'){
-			redirect('main_menu/nim/'.$arr['satu'].'/'.$arr['edoc'],$arr);
-		}else{
-			redirect('main_menu/quiz2',$arr);
+		$arr['edoc'] = md5(date('hyhdhmhyhmhdhhh') . $nameuser);
+		if ($to == 'edom') {
+			redirect('main_menu/nim/' . $arr['satu'] . '/' . $arr['edoc'], $arr);
+		} else {
+			redirect('main_menu/quiz2', $arr);
 		}
 		// echo json_encode($arr);
 	}
-	
+
 	function logout()
 	{
 		$this->session->sess_destroy();
