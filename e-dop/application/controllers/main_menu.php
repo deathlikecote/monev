@@ -133,7 +133,7 @@ class Main_menu extends MY_Controller {
 			}
 			$this->load->view('main_menu',$data);
 		} else {
-			redirect('../../../evaluasi/main.php');
+			redirect('maaf');
 		}
 	}
 	

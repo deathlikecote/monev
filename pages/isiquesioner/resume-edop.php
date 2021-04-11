@@ -123,7 +123,7 @@
 			$overall=0;	
 			$detail=0;
 			
-			$nilaioverall=mysqli_query($Open,"SELECT * FROM tEdopOverall where ta='$ta'  and kodedosen='$kode' and idprogstudi='$prodi'");
+			$nilaioverall=mysqli_query($Open,"SELECT * FROM tedopoverall where ta='$ta'  and kodedosen='$kode' and idprogstudi='$prodi'");
 			$no=mysqli_fetch_array($nilaioverall);
 			
 			$kodedp=$no['kodedosen'].''.$no['idprogstudi'];
@@ -152,7 +152,7 @@
     <th width="8">C</th>
   </tr>
   ';
- $tn1=mysqli_query($Open,"SELECT b.namamk, a.A, a.B, a.C, a.total,c.v1,a.kedop FROM tNilaiEdop a,m_matakuliah b,tEdopNilaiPresentase c where  (a.ta='$ta' and a.idprogstudi='$prodi' and a.kodedosen='$kode') and (b.kodemk=a.kodemk) and (c.kedop=a.kedop)");
+ $tn1=mysqli_query($Open,"SELECT b.namamk, a.A, a.B, a.C, a.total,c.v1,a.kedop FROM tnilaiedop a,m_matakuliah b,tedopnilaipresentase c where  (a.ta='$ta' and a.idprogstudi='$prodi' and a.kodedosen='$kode') and (b.kodemk=a.kodemk) and (c.kedop=a.kedop)");
 		while($tn=mysqli_fetch_array($tn1)){
 echo'			 
   <tr>
@@ -247,7 +247,7 @@ echo'
   		<h4 style="background-image:url(img/judul.png);background-repeat:no-repeat;background-size:100%;padding:5px;text-shadow:0.5px 0.5px 0.5px white;">Detail</h4><div class="row">
 ';			
 //----------------selector detail---------------------------------------
-	$nilaidetail=mysqli_query($Open,"SELECT b.namaprodi ,a.A,a.B,a.C,a.total FROM tNilaiEdop a,m_prodi b where (a.ta='$ta' and a.kodedosen='$kode' and a.idprogstudi='$prodi') and (b.kodeprodi=a.idprogstudi)");
+	$nilaidetail=mysqli_query($Open,"SELECT b.namaprodi ,a.A,a.B,a.C,a.total FROM tnilaiedop a,m_prodi b where (a.ta='$ta' and a.kodedosen='$kode' and a.idprogstudi='$prodi') and (b.kodeprodi=a.idprogstudi)");
 		while($nd=mysqli_fetch_array($nilaidetail)){
 			$detail=$detail+50;
 //----------------------js detail--------------------------------

@@ -38,7 +38,7 @@
 
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Resume <small>EDOM&nbsp;</small></h1>
+<h1 class="page-header">Resume <small>EPOM&nbsp;</small></h1>
 <!-- end page-header -->
 
 <!-- begin row -->
@@ -114,7 +114,7 @@
 			$overall=0;	
 			$detail=0;
 		
-			$nilaioverall=mysqli_query($Open, "SELECT * FROM tEpomOverall where ta='$ta' and idprogstudi='$kode'");
+			$nilaioverall=mysqli_query($Open, "SELECT * FROM tepomoverall where ta='$ta' and idprogstudi='$kode'");
 			$no=mysqli_fetch_array($nilaioverall);
 			
 		
@@ -143,7 +143,7 @@
 			    <th width="8" style="text-align:center;vertical-align:middle">D</th>
 			  </tr>
   ';
- $tn1=mysqli_query($Open, "SELECT  idprogstudi as nama, kelas_id, A, B, C, D, total FROM tNilaiEpom  where ta='$ta' and idprogstudi='$kode'");
+ $tn1=mysqli_query($Open, "SELECT  idprogstudi as nama, kelas_id, A, B, C, D, total FROM tnilaiepom  where ta='$ta' and idprogstudi='$kode'");
  
 		while($tn=mysqli_fetch_array($tn1)){
 echo'			 
@@ -245,7 +245,7 @@ echo'
   		<h4 style="background-image:url(img/judul.png);background-repeat:no-repeat;background-size:100%;padding:5px;text-shadow:0.5px 0.5px 0.5px white;">Detail</h4><div class="row">
 ';			
 //----------------selector detail---------------------------------------
-	$nilaidetail=mysqli_query($Open, "SELECT a.idprogstudi as nama ,a.A,a.B,a.C,a.D,a.total FROM tNilaiEpom a where (a.ta='$ta' and a.idprogstudi='$kode')");
+	$nilaidetail=mysqli_query($Open, "SELECT a.idprogstudi as nama ,a.A,a.B,a.C,a.D,a.total FROM tnilaiepom a where (a.ta='$ta' and a.idprogstudi='$kode')");
 		while($nd=mysqli_fetch_array($nilaidetail)){
 			$detail=$detail+50;
 //----------------------js detail--------------------------------

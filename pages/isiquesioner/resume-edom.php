@@ -127,10 +127,10 @@
 			$kode=$_SESSION['id_user'];
 			$overall=0;	
 			$detail=0;
-			$namamk1=mysqli_query($plm_edom, "SELECT a.kodemk, b.namamk FROM t_penugasan a, m_matakuliah b  where a.perta='$ta' AND a.kodemk='$mk' AND b.kodemk=a.kodemk");
+			$namamk1=mysqli_query($Open, "SELECT a.kodemk, b.namamk FROM t_penugasan a, m_matakuliah b  where a.perta='$ta' AND a.kodemk='$mk' AND b.kodemk=a.kodemk");
 			$nmk=mysqli_fetch_array($namamk1);
 		
-			$nilaioverall=mysqli_query($plm_edom, "SELECT * FROM tedomoverall  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
+			$nilaioverall=mysqli_query($Open, "SELECT * FROM tedomoverall  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
 			$no=mysqli_fetch_array($nilaioverall);
 			
 		
@@ -171,7 +171,7 @@
 			  </thead>
 			  <tbody>
 			  ';
- $tn1=mysqli_query($plm_edom, "SELECT * FROM tnilaiedom  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
+ $tn1=mysqli_query($Open, "SELECT * FROM tnilaiedom  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
 		while($tn=mysqli_fetch_array($tn1)){
 echo'			 
   <tr>
@@ -283,7 +283,7 @@ echo'
   		<h4>Detail</h4><div class="row">
 ';			
 //----------------selector detail---------------------------------------
-	$nilaidetail=mysqli_query($plm_edom, "SELECT * FROM tNilaiEdom  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
+	$nilaidetail=mysqli_query($Open, "SELECT * FROM tnilaiedom  where kodemk='$mk' and ta='$ta' and kodedosen='$kode'");
 		while($nd=mysqli_fetch_array($nilaidetail)){
 			$detail=$detail+50;
 		echo'

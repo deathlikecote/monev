@@ -17,10 +17,10 @@
 <?php
 	include "../config/koneksi.php";
 	
-	$totSurvei		= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek"));
+	/*$totSurvei		= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek"));
 	$surveiDatang	= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek WHERE tgl_terbit > '".date('Y-m-d')."'"));
 	$surveiAktif	= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek WHERE tgl_terbit <= '".date('Y-m-d')."' AND tgl_tutup > '".date('Y-m-d')."'"));
-	$surveiBerakhir	= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek WHERE tgl_tutup < '".date('Y-m-d')."'"));
+	$surveiBerakhir	= mysqli_num_rows(mysqli_query($Open,"SELECT * FROM tb_projek WHERE tgl_tutup < '".date('Y-m-d')."'"));*/
 			
 	/*$jmlhar	=mysqli_query($Open,"SELECT * FROM tb_penghargaan");
 	$jhar	=mysqli_num_rows($jmlhar);
@@ -48,7 +48,7 @@
 		<div class="widget widget-stats bg-white text-inverse">
 			<div class="stats-icon stats-icon-lg stats-icon-square bg-gradient-red"><i class="ion-ios-paper"></i></div>
 			<div class="stats-title">SURVEI</div>
-			<div class="stats-number"><?=$totSurvei?></div>
+			<div class="stats-number"><!-- <?=$totSurvei?> --></div>
 			<div class="stats-progress progress">
 				<div class="progress-bar" style="width: 90%;"></div>
 			</div>
@@ -61,7 +61,7 @@
 		<div class="widget widget-stats bg-white text-inverse">
 			<div class="stats-icon stats-icon-lg stats-icon-square bg-gradient-orange"><i class="ion-ios-calendar"></i></div>
 			<div class="stats-title">SURVEI AKAN DATANG</div>
-			<div class="stats-number"><?=$surveiDatang?></div>
+			<div class="stats-number"><!-- <?=$surveiDatang?> --></div>
 			<div class="stats-progress progress">
 				<div class="progress-bar" style="width: 90%;"></div>
 			</div>
@@ -74,7 +74,7 @@
 		<div class="widget widget-stats bg-white text-inverse">
 			<div class="stats-icon stats-icon-lg stats-icon-square bg-gradient-green"><i class="ion-ios-checkmark"></i></div>
 			<div class="stats-title">SUERVEI AKTIF</div>
-			<div class="stats-number"><?=$surveiAktif?></div>
+			<div class="stats-number"><!-- <?=$surveiAktif?> --></div>
 			<div class="stats-progress progress">
 				<div class="progress-bar" style="width: 90%;"></div>
 			</div>
@@ -87,7 +87,7 @@
 		<div class="widget widget-stats bg-white text-inverse">
 			<div class="stats-icon stats-icon-lg stats-icon-square bg-gradient-orange"><i class="ion-ios-close"></i></div>
 			<div class="stats-title">SURVEI BERAKHIR</div>
-			<div class="stats-number"><?=$surveiBerakhir?></div>
+			<div class="stats-number"><!-- <?=$surveiBerakhir?> --></div>
 			<div class="stats-progress progress">
 				<div class="progress-bar" style="width: 90%;"></div>
 			</div>

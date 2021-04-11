@@ -114,7 +114,7 @@
 			$overall=0;	
 			$detail=0;
 		
-			$nilaioverall=mysqli_query($Open, "SELECT * FROM tEpodOverall where ta='$ta' and idprogstudi='$kode'");
+			$nilaioverall=mysqli_query($Open, "SELECT * FROM tepodoverall where ta='$ta' and idprogstudi='$kode'");
 			$no=mysqli_fetch_array($nilaioverall);
 			
 		
@@ -142,7 +142,7 @@
     <th width="8" style="text-align:center;vertical-align:middle">C</th>
   </tr>
   ';
- $tn1=mysqli_query($Open, "SELECT a. kodedosen as nama, c.namamk, a.A, a.B, a.C, a.total,a.idprogstudi FROM tNilaiEpod a,v_mk c  where  (a.ta='$ta' and a.idprogstudi='$kode') and (c.kodemk=a.kodemk)");
+ $tn1=mysqli_query($Open, "SELECT a. kodedosen as nama, c.namamk, a.A, a.B, a.C, a.total,a.idprogstudi FROM tnilaiepod a,v_mk c  where  (a.ta='$ta' and a.idprogstudi='$kode') and (c.kodemk=a.kodemk)");
  
 		while($tn=mysqli_fetch_array($tn1)){
 echo'			 
@@ -239,7 +239,7 @@ echo'
   		<h4 style="background-image:url(img/judul.png);background-repeat:no-repeat;background-size:100%;padding:5px;text-shadow:0.5px 0.5px 0.5px white;">Detail</h4><div class="row">
 ';			
 //----------------selector detail---------------------------------------
-	$nilaidetail=mysqli_query($Open, "SELECT a.kodedosen as nama ,a.A,a.B,a.C,a.total FROM tNilaiEpod a where (a.ta='$ta' and a.idprogstudi='$kode')");
+	$nilaidetail=mysqli_query($Open, "SELECT a.kodedosen as nama ,a.A,a.B,a.C,a.total FROM tnilaiepod a where (a.ta='$ta' and a.idprogstudi='$kode')");
 		while($nd=mysqli_fetch_array($nilaidetail)){
 			$detail=$detail+50;
 //----------------------js detail--------------------------------

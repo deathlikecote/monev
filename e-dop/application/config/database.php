@@ -16,7 +16,7 @@
 |	['username'] The username used to connect to the database
 |	['password'] The password used to connect to the database
 |	['database'] The name of the database you want to connect to
-|	['dbdriver'] The database type. ie: mysql.  Currently supported:
+|	['dbdriver'] The database type. ie: mysqli.  Currently supported:
 				 mysql, mysqli, postgre, odbc, mssql, sqlite, oci8
 |	['dbprefix'] You can add an optional prefix, which will be added
 |				 to the table name when using the  Active Record class
@@ -45,7 +45,7 @@ $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
 $db['default']['password'] = '';
 $db['default']['database'] = 'stpban01_monev';
-$db['default']['dbdriver'] = 'mysql';
+$db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
 $db['default']['db_debug'] = TRUE;
@@ -61,7 +61,7 @@ $db['plm']['hostname'] = 'localhost';
 $db['plm']['username'] = 'root';
 $db['plm']['password'] = '';
 $db['plm']['database'] = 'stpban01_monev';
-$db['plm']['dbdriver'] = 'mysql';
+$db['plm']['dbdriver'] = 'mysqli';
 $db['plm']['dbprefix'] = '';
 $db['plm']['pconnect'] = TRUE;
 $db['plm']['db_debug'] = TRUE;
@@ -77,7 +77,7 @@ $db['sisak']['hostname'] = 'localhost';
 $db['sisak']['username'] = 'root';
 $db['sisak']['password'] = '';
 $db['sisak']['database'] = 'stpban01_monev';
-$db['sisak']['dbdriver'] = 'mysql';
+$db['sisak']['dbdriver'] = 'mysqli';
 $db['sisak']['dbprefix'] = '';
 $db['sisak']['pconnect'] = TRUE;
 $db['sisak']['db_debug'] = TRUE;
