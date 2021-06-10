@@ -37,7 +37,7 @@
 <?php
 
 include "../config/koneksi.php";
-$tampilUsr = mysqli_query($Open, "select ta,utsuas,nim,kelas_id,idprogstudi,komentar,spote,done from epompotensi" . $wheres . "") or die("error:" . mysql_error());
+$tampilUsr = mysqli_query($Open, "select ta,utsuas,nim,kelas_id,idprogstudi,komentar,spote,done from epompotensi" . $wheres . " WHERE ta ='" . $pertax . "'") or die("error:" . mysql_error());
 $hasil2 = mysqli_query($Open, "select distinct nim from edompotensi" . $wheres . "") or die("error:" . mysql_error());
 $row = mysqli_num_rows($hasil2);
 $hasil3 = mysqli_query($Open, "select * from edompotensi" . $wheres . " where done=1 group by nim") or die("error:" . mysql_error());

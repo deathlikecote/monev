@@ -1,34 +1,33 @@
 <?php
-	if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-	
+
 	include "../config/koneksi.php";
-	$query   =mysqli_query($Open,"SELECT * FROM t_penugasan WHERE id='$id'");
-	$data    =mysqli_fetch_array($query);
-	}
-	else {
-		die ("Error. No ID Selected!");	
-	}
+	$query   = mysqli_query($Open, "SELECT * FROM t_penugasan WHERE id='$id'");
+	$data    = mysqli_fetch_array($query);
+} else {
+	die("Error. No ID Selected!");
+}
 ?>
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
 	<li>
 		<?php
-			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
-			}
-			$_SESSION['pesan'] ="";
+		if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+			echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; " . $_SESSION['pesan'] . " &nbsp; &nbsp; &nbsp;</div></span>";
+		}
+		$_SESSION['pesan'] = "";
 		?>
 	</li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Referensi <small>Kelas Mahasiswa Aktif <i class="fa fa-angle-right"></i> Edit <i class="fa fa-key"></i> id_<?=$id?></small></h1>
+<h1 class="page-header">Referensi <small>Kelas Mahasiswa Aktif <i class="fa fa-angle-right"></i> Edit <i class="fa fa-key"></i> id_<?= $id ?></small></h1>
 <!-- end page-header -->
 <!-- begin row -->
 <div class="row">
 	<!-- begin col-12 -->
-    <div class="col-md-12">
+	<div class="col-md-12">
 		<!-- begin panel -->
 		<div class="panel panel-inverse" data-sortable-id="form-stuff-1">
 			<div class="panel-heading">
@@ -41,90 +40,98 @@
 				<h4 class="panel-title">Form edit data kelas mahasiswa aktif</h4>
 			</div>
 			<div class="panel-body">
-				<form action="index.php?page=edit-data-penugasan&id=<?=$id?>" class="form-horizontal" method="POST" enctype="multipart/form-data" >
-					
-		    		<input type="hidden" id="perta" name="perta" value="<?=$data['perta']?>">
+				<form action="index.php?page=edit-data-penugasan&id=<?= $id ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
 
-		            <div class="form-group">
-						<label for="kdprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Prodi</label>
+					<input type="hidden" id="perta" name="perta" value="<?= $data['perta'] ?>">
+
+					<div class="form-group">
+						<label for="kdprodi" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Prodi
+						</label>
 						<div class="col-md-2">
-	                     <select id="kdprodi" name="kdprodi" class="form-control" searchable="" >
-	                        <option value="" disabled selected>--Pilih Prodi--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_prodi ORDER BY kodeprodi ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                           ?>
+							<select id="kdprodi" name="kdprodi" class="form-control" searchable="">
+								<option value="" disabled selected>--Pilih Prodi--</option>
+								<?php
+								$a = 0;
+								$t = mysqli_query($Open, "SELECT * FROM m_prodi ORDER BY kodeprodi ASC");
+								while ($tak = mysqli_fetch_array($t)) {
+								?>
 
-	                            <option value="<?=$tak['kodeprodi']?>" <?php echo ($data['kdprodi'] == $tak['kodeprodi']) ? 'selected' : '';?>><?=$tak['kodeprodi']?></option>  
-	                           
-	                           <?php } ?>
-	                    </select>
-	                	</div>
-	                </div>
+									<option value="<?= $tak['kodeprodi'] ?>" <?php echo ($data['kdprodi'] == $tak['kodeprodi']) ? 'selected' : ''; ?>><?= $tak['kodeprodi'] ?></option>
 
-		    		<div class="form-group">
-						<label for="kelas" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Kelas</label>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="kelas" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Kelas
+						</label>
 						<div class="col-md-2">
-	                     <select id="kelas" name="kelas" class="form-control" searchable="" >
-	                        <option value="" disabled selected>--Pilih Kelas--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT DISTINCT(kelas) FROM t_kelas ORDER BY kelas ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                          ?>
+							<select id="kelas" name="kelas" class="form-control" searchable="">
+								<option value="" disabled selected>--Pilih Kelas--</option>
+								<?php
+								$a = 0;
+								$t = mysqli_query($Open, "SELECT DISTINCT(kelas) FROM t_kelas ORDER BY kelas ASC");
+								while ($tak = mysqli_fetch_array($t)) {
+								?>
 
-	                            <option value="<?=$tak['kelas']?>" <?php echo ($data['kelas'] == $tak['kelas']) ? 'selected' : '';?>><?=$tak['kelas']?></option>  
-	                           
-	                         <?php } ?>
-	                    </select>
-	                	</div>
-	                </div>
+									<option value="<?= $tak['kelas'] ?>" <?php echo ($data['kelas'] == $tak['kelas']) ? 'selected' : ''; ?>><?= $tak['kelas'] ?></option>
 
-	                <div class="form-group">
-		    			<label for="kodemk" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Matakuliah</label>
-		    			<div class="col-md-4">
-		    				<select id="kodemk" name="kodemk" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih MK--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"SELECT * FROM m_matakuliah ORDER BY kodemk ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                          	?>
-	                            	<option value="<?=$tak['kodemk']?>" <?php echo ($data['kodemk'] == $tak['kodemk']) ? 'selected' : '';?>><?php echo $tak['kodemk']." | ".$tak['namamk']; ?></option> 
+								<?php } ?>
+							</select>
+						</div>
+					</div>
 
-	                            <?php } ?>
-	                    </select>
-		    				
-		    			</div>
-		    		</div>
-		    		
-		    		<div class="form-group">
-		    			<label for="kodedosen" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Dosen</label>
-		    			<div class="col-md-4">
-		    				<select id="kodedosen" name="kodedosen" class="form-control select2" searchable="" >
-	                        <option value="" disabled selected>--Pilih Dosen--</option>
-	                         <?php
-	                            $a=0;
-	                            $t=mysqli_query($Open,"
+					<div class="form-group">
+						<label for="kodemk" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Matakuliah
+						</label>
+						<div class="col-md-4">
+							<select id="kodemk" name="kodemk" class="form-control select2" searchable="">
+								<option value="" disabled selected>--Pilih MK--</option>
+								<?php
+								$a = 0;
+								$t = mysqli_query($Open, "SELECT * FROM m_matakuliah ORDER BY kodemk ASC");
+								while ($tak = mysqli_fetch_array($t)) {
+								?>
+									<option value="<?= $tak['kodemk'] ?>" <?php echo ($data['kodemk'] == $tak['kodemk']) ? 'selected' : ''; ?>><?php echo $tak['kodemk'] . " | " . $tak['namamk']; ?></option>
+
+								<?php } ?>
+							</select>
+
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="kodedosen" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Dosen
+						</label>
+						<div class="col-md-4">
+							<select id="kodedosen" name="kodedosen" class="form-control select2" searchable="">
+								<option value="" disabled selected>--Pilih Dosen--</option>
+								<?php
+								$a = 0;
+								$t = mysqli_query($Open, "
 	                            	SELECT kodedosen AS kodedosen, nama AS nama FROM m_dosen 
 	                            	UNION 
 	                            	SELECT tim AS kodedosen, 'Tim dosen' AS nama FROM m_timdosen
 	                            	ORDER BY kodedosen ASC");
-	                            while($tak=mysqli_fetch_array($t)){
-	                            	?>
-	                            	<option value="<?=$tak['kodedosen']?>" <?php echo ($data['kodedosen'] == $tak['kodedosen']) ? 'selected' : '';?>><?php echo $tak['kodedosen']." | ".$tak['nama']; ?></option> 
+								while ($tak = mysqli_fetch_array($t)) {
+								?>
+									<option value="<?= $tak['kodedosen'] ?>" <?php echo ($data['kodedosen'] == $tak['kodedosen']) ? 'selected' : ''; ?>><?php echo $tak['kodedosen'] . " | " . $tak['nama']; ?></option>
 
-	                            <?php } ?>
-	                    </select>
-		    				
-		    			</div>
-		    		</div>
+								<?php } ?>
+							</select>
+
+						</div>
+					</div>
 
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">
-							<button type="submit" name="edit" value="edit" class="btn btn-primary"><i class="fa fa-edit"></i> &nbsp;Edit</button>&nbsp;
+							<button type="submit" name="edit" value="edit" class="btn btn-primary"><i class="fa fa-save"></i> &nbsp;Simpan</button>&nbsp;
 							<a type="button" class="btn btn-default active" href="index.php?page=form-view-data-penugasan"><i class="ion-arrow-return-left"></i>&nbsp;Cancel</a>
 						</div>
 					</div>
@@ -136,31 +143,37 @@
 	<!-- end col-6 -->
 </div>
 <!-- end row -->
-<script> // 500 = 0,5 s
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
+<script>
+	// 500 = 0,5 s
+	$(document).ready(function() {
+		setTimeout(function() {
+			$(".pesan").fadeIn('slow');
+		}, 500);
+	});
+	setTimeout(function() {
+		$(".pesan").fadeOut('slow');
+	}, 7000);
 
 	$('.select2').select2();
 
- 	function validateForm(isian)
-	{
-		if(""==document.forms.isian.kdprodi.value){
+	function validateForm(isian) {
+		if ("" == document.forms.isian.kdprodi.value) {
 			alert("Silahkan pilih Prodi");
-			document.getElementById('kdprodi').style.borderColor='red';
+			document.getElementById('kdprodi').style.borderColor = 'red';
 			document.getElementById('kdprodi').focus();;
 			return false;
 		}
 
-		if(""==document.forms.isian.kelas.value){
+		if ("" == document.forms.isian.kelas.value) {
 			alert("Silahkan isi Kelas");
-			document.getElementById('kelas').style.borderColor='red';
+			document.getElementById('kelas').style.borderColor = 'red';
 			document.getElementById('kelas').focus();;
 			return false;
 		}
 
-		if(""==document.forms.isian.nim.value){
+		if ("" == document.forms.isian.nim.value) {
 			alert("Silahkan pilih NIM");
-			document.getElementById('nim').style.borderColor='red';
+			document.getElementById('nim').style.borderColor = 'red';
 			document.getElementById('nim').focus();;
 			return false;
 		}

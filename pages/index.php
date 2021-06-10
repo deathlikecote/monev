@@ -141,6 +141,22 @@ $usr		= mysqli_fetch_array($tampilUsr);
 			color: white;
 			font-size: 1.2em;
 		}
+
+		#navcenter {
+			position: absolute;
+			width: 100%;
+			left: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			text-align: center;
+			margin: 0 auto;
+		}
+
+		@media only screen and (max-width: 600px) {
+			#navcenter {
+				top: 75%;
+			}
+		}
 	</style>
 </head>
 
@@ -172,11 +188,16 @@ $usr		= mysqli_fetch_array($tampilUsr);
 					</button>
 				</div>
 				<!-- end mobile sidebar expand / collapse button -->
+
 				<!-- begin navbar-collapse -->
 				<div class="collapse navbar-collapse pull-left" id="top-navbar">
 					<ul class="nav navbar-nav">
 						<li><a href="javascript:;" data-click="sidebar-minify"><i class="ion-navicon-round m-r-5 f-s-20 pull-left text-inverse"></i></a></li>
 					</ul>
+				</div>
+				<!-- begin middle nav -->
+				<div class="nav navbar-nav" id="navcenter">
+					<h4><small>Perta Aktif</small><br><?= $_SESSION['perta']; ?></h4>
 				</div>
 				<!-- end navbar-collapse -->
 				<!-- begin header navigation right -->
@@ -287,6 +308,7 @@ $usr		= mysqli_fetch_array($tampilUsr);
 						<li><a href="index.php?page=frame-edom"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EDOM</span></a></li>
 
 						<li><a href="index.php?page=frame-epom"><i class="ion-ios-list-outline bg-blue"></i><span>Quesioner EPOM</span></a></li>
+						<li><a href="index.php?page=frame-survei"><i class="ion-document-text bg-pink"></i><span>e-Survei</span></a></li>
 
 					<?php } ?>
 					<!-- EOF Menu Mahasiswa -->
@@ -297,6 +319,7 @@ $usr		= mysqli_fetch_array($tampilUsr);
 						<li><a href="index.php?page=frame-epod"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EPOD</span></a></li>
 						<li><a href="index.php?page=resume-edom"><i class="ion-document-text bg-blue"></i><span>Resume EDOM</span></a></li>
 						<li><a href="index.php?page=resume-edop"><i class="ion-document-text bg-green"></i><span>Resume EDOP</span></a></li>
+						<li><a href="index.php?page=frame-survei"><i class="ion-document-text bg-pink"></i><span>e-Survei</span></a></li>
 
 					<?php } ?>
 					<!-- EOF Menu Dosen -->
@@ -307,6 +330,7 @@ $usr		= mysqli_fetch_array($tampilUsr);
 						<li><a href="index.php?page=frame-edop"><i class="ion-ios-list-outline bg-yellow"></i><span>Quesioner EDOP</span></a></li>
 						<li><a href="index.php?page=resume-epom"><i class="ion-document-text bg-blue"></i><span>Resume EPOM</span></a></li>
 						<li><a href="index.php?page=resume-epod"><i class="ion-document-text bg-green"></i><span>Resume EPOD</span></a></li>
+						<li><a href="index.php?page=frame-survei"><i class="ion-document-text bg-pink"></i><span>e-Survei</span></a></li>
 
 					<?php } ?>
 					<!-- EOF Menu Prodi -->
@@ -699,7 +723,10 @@ $usr		= mysqli_fetch_array($tampilUsr);
 					include "../pages/isiquesioner/resume-edop.php";
 					break;
 
-
+					// SURVEI
+				case 'frame-survei':
+					include "../pages/isisurvei/frame-survei.php";
+					break;
 
 					/*GENERATE POTENSI EDOM EPOM*/
 				case 'form-view-generate-edom':

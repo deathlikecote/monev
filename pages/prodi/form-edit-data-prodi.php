@@ -1,34 +1,33 @@
 <?php
-	if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-	
+
 	include "../config/koneksi.php";
-	$query   =mysqli_query($Open,"SELECT * FROM m_prodi WHERE id='$id'");
-	$data    =mysqli_fetch_array($query);
-	}
-	else {
-		die ("Error. No ID Selected!");	
-	}
+	$query   = mysqli_query($Open, "SELECT * FROM m_prodi WHERE id='$id'");
+	$data    = mysqli_fetch_array($query);
+} else {
+	die("Error. No ID Selected!");
+}
 ?>
 <!-- begin breadcrumb -->
 <ol class="breadcrumb pull-right">
 	<li>
 		<?php
-			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
-			}
-			$_SESSION['pesan'] ="";
+		if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+			echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; " . $_SESSION['pesan'] . " &nbsp; &nbsp; &nbsp;</div></span>";
+		}
+		$_SESSION['pesan'] = "";
 		?>
 	</li>
 </ol>
 <!-- end breadcrumb -->
 <!-- begin page-header -->
-<h1 class="page-header">Data <small>Prodi <i class="fa fa-angle-right"></i> Edit <i class="fa fa-key"></i> id_<?=$id?></small></h1>
+<h1 class="page-header">Data <small>Prodi <i class="fa fa-angle-right"></i> Edit <i class="fa fa-key"></i> id_<?= $id ?></small></h1>
 <!-- end page-header -->
 <!-- begin row -->
 <div class="row">
 	<!-- begin col-12 -->
-    <div class="col-md-12">
+	<div class="col-md-12">
 		<!-- begin panel -->
 		<div class="panel panel-inverse" data-sortable-id="form-stuff-1">
 			<div class="panel-heading">
@@ -41,39 +40,45 @@
 				<h4 class="panel-title">Form edit data prodi</h4>
 			</div>
 			<div class="panel-body">
-				<form action="index.php?page=edit-data-prodi&id=<?=$id?>" class="form-horizontal" method="POST" enctype="multipart/form-data" >
+				<form action="index.php?page=edit-data-prodi&id=<?= $id ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
-		    			<label for="kodeprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Kode PRODI</label>
-		    			<div class="col-md-2">
-		    				<input type="text" class="form-control" name="kodeprodi" id="kodeprodi" placeholder="" value="<?=$data['kodeprodi']?>">
-		    				<input type="hidden" class="form-control" name="kodeprodi_old" id="kodeprodi_old"  value="<?=$data['kodeprodi']?>">
-		    			</div>
-		    		</div>
+						<label for="kodeprodi" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Kode PRODI
+						</label>
+						<div class="col-md-2">
+							<input type="text" class="form-control" name="kodeprodi" id="kodeprodi" placeholder="" value="<?= $data['kodeprodi'] ?>">
+							<input type="hidden" class="form-control" name="kodeprodi_old" id="kodeprodi_old" value="<?= $data['kodeprodi'] ?>">
+						</div>
+					</div>
 
-		    		<div class="form-group">
-		    			<label for="nama" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Nama Prodi</label>
-		    			<div class="col-md-4">
-		    				<input type="text" class="form-control" name="namaprodi" id="namaprodi" placeholder="" value="<?=$data['namaprodi']?>">
-		    			</div>
-		    		</div>
+					<div class="form-group">
+						<label for="nama" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Nama Prodi
+						</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" name="namaprodi" id="namaprodi" placeholder="" value="<?= $data['namaprodi'] ?>">
+						</div>
+					</div>
 
-		    		<div class="form-group">
-		    			<label for="jurprodi" class="col-md-3 control-label">Jurusan</label>
-		    			<div class="col-md-4">
-		    				<input type="text" class="form-control" name="jurprodi" id="jurprodi" placeholder="" value="<?=$data['jurprodi']?>">
-		    			</div>
-		    		</div>
+					<div class="form-group">
+						<label for="jurprodi" class="col-md-3 control-label">Jurusan</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" name="jurprodi" id="jurprodi" placeholder="" value="<?= $data['jurprodi'] ?>">
+						</div>
+					</div>
 
-		    		<div class="form-group">
-		    			<label for="jenprodi" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Jenjang</label>
-		    			<div class="col-md-2">
-		    				<input type="text" class="form-control" id="jenprodi" name="jenprodi" placeholder="" value="<?=$data['jenprodi']?>">
-		    			</div>
-		    		</div>
+					<div class="form-group">
+						<label for="jenprodi" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Jenjang
+						</label>
+						<div class="col-md-2">
+							<input type="text" class="form-control" id="jenprodi" name="jenprodi" placeholder="" value="<?= $data['jenprodi'] ?>">
+						</div>
+					</div>
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">
-							<button type="submit" name="edit" value="edit" class="btn btn-primary"><i class="fa fa-edit"></i> &nbsp;Edit</button>&nbsp;
+							<button type="submit" name="edit" value="edit" class="btn btn-primary"><i class="fa fa-save"></i> &nbsp;Simpan</button>&nbsp;
 							<a type="button" class="btn btn-default active" href="index.php?page=form-view-data-prodi"><i class="ion-arrow-return-left"></i>&nbsp;Cancel</a>
 						</div>
 					</div>
@@ -85,7 +90,14 @@
 	<!-- end col-6 -->
 </div>
 <!-- end row -->
-<script> // 500 = 0,5 s
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
+<script>
+	// 500 = 0,5 s
+	$(document).ready(function() {
+		setTimeout(function() {
+			$(".pesan").fadeIn('slow');
+		}, 500);
+	});
+	setTimeout(function() {
+		$(".pesan").fadeOut('slow');
+	}, 7000);
 </script>
