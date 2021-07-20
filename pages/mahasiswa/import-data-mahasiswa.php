@@ -87,5 +87,3 @@ session_start();
 			        $type = "error";
 			        $message = "File harus .xls / .xlsx.";
 			    }
-	
-?>

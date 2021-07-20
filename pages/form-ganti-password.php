@@ -2,10 +2,10 @@
 <ol class="breadcrumb pull-right">
 	<li>
 		<?php
-			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
-			}
-			$_SESSION['pesan'] ="";
+		if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+			echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; " . $_SESSION['pesan'] . " &nbsp; &nbsp; &nbsp;</div></span>";
+		}
+		$_SESSION['pesan'] = "";
 		?>
 	</li>
 </ol>
@@ -14,17 +14,16 @@
 <h1 class="page-header">Password <small>Change <i class="fa fa-key"></i></small></h1>
 <!-- end page-header -->
 <?php
-	if (isset($_GET['id'])) {
+if (isset($_GET['id'])) {
 	$id = $_GET['id'];
-	}
-	else {
-		die ("Error. No ID Selected! ");	
-	}
-	include "../config/koneksi.php";
+} else {
+	die("Error. No ID Selected! ");
+}
+include "../config/koneksi.php";
 ?>
 <div class="row">
 	<!-- begin col-12 -->
-    <div class="col-md-12">
+	<div class="col-md-12">
 		<!-- begin panel -->
 		<div class="panel panel-inverse" data-sortable-id="form-stuff-1">
 			<div class="panel-heading">
@@ -37,7 +36,7 @@
 				<h4 class="panel-title">Form ganti password</h4>
 			</div>
 			<div class="panel-body">
-				<form action="index.php?page=ganti-password&id=<?=$id?>" class="form-horizontal" method="POST" enctype="multipart/form-data" >
+				<form action="index.php?page=ganti-password&id=<?= $id ?>" class="form-horizontal" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label class="col-md-3 control-label">Password Lama</label>
 						<div class="col-md-6">
@@ -71,7 +70,14 @@
 	<!-- end col-6 -->
 </div>
 <!-- end row -->
-<script> // 500 = 0,5 s
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
+<script>
+	// 500 = 0,5 s
+	$(document).ready(function() {
+		setTimeout(function() {
+			$(".pesan").fadeIn('slow');
+		}, 500);
+	});
+	setTimeout(function() {
+		$(".pesan").fadeOut('slow');
+	}, 7000);
 </script>

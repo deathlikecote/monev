@@ -401,6 +401,3 @@ $pdf->output()
 
 
 //header("Location:edomreport1.php")
-
-
-?>

@@ -2,10 +2,10 @@
 <ol class="breadcrumb pull-right">
 	<li>
 		<?php
-			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
-			}
-			$_SESSION['pesan'] ="";
+		if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+			echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; " . $_SESSION['pesan'] . " &nbsp; &nbsp; &nbsp;</div></span>";
+		}
+		$_SESSION['pesan'] = "";
 		?>
 	</li>
 </ol>
@@ -16,7 +16,7 @@
 <!-- begin row -->
 <div class="row">
 	<!-- begin col-12 -->
-    <div class="col-md-12">
+	<div class="col-md-12">
 		<!-- begin panel -->
 		<div class="panel panel-inverse" data-sortable-id="form-stuff-1">
 			<div class="panel-heading">
@@ -29,21 +29,25 @@
 				<h4 class="panel-title">Form master data dosen</h4>
 			</div>
 			<div class="panel-body">
-				<form action="index.php?page=master-data-dosen" class="form-horizontal" method="POST" enctype="multipart/form-data" >
+				<form action="index.php?page=master-data-dosen" class="form-horizontal" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
-		    			<label for="kodedosen" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Kode</label>
-		    			<div class="col-md-2">
-		    				<input type="text" class="form-control" name="kodedosen" id="kodedosen" placeholder="" value="">
-		    			</div>
-		    		</div>
+						<label for="kodedosen" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Kode
+						</label>
+						<div class="col-md-2">
+							<input type="text" class="form-control" name="kodedosen" id="kodedosen" placeholder="" value="">
+						</div>
+					</div>
 
-		    		<div class="form-group">
-		    			<label for="nama" class="col-md-3 control-label"><font color="red">*&nbsp;</font>Nama</label>
-		    			<div class="col-md-4">
-		    				<input type="text" class="form-control" name="nama" id="nama" placeholder="" value="">
-		    			</div>
-		    		</div>
-		    		
+					<div class="form-group">
+						<label for="nama" class="col-md-3 control-label">
+							<font color="red">*&nbsp;</font>Nama
+						</label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" name="nama" id="nama" placeholder="" value="">
+						</div>
+					</div>
+
 					<div class="form-group">
 						<label class="col-md-3 control-label"></label>
 						<div class="col-md-6">
@@ -59,7 +63,14 @@
 	<!-- end col-6 -->
 </div>
 <!-- end row -->
-<script> // 500 = 0,5 s
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
+<script>
+	// 500 = 0,5 s
+	$(document).ready(function() {
+		setTimeout(function() {
+			$(".pesan").fadeIn('slow');
+		}, 500);
+	});
+	setTimeout(function() {
+		$(".pesan").fadeOut('slow');
+	}, 7000);
 </script>

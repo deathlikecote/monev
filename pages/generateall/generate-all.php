@@ -2,26 +2,26 @@
 <ol class="breadcrumb pull-right">
 	<li>
 		<?php
-			if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
-				echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; ".$_SESSION['pesan']." &nbsp; &nbsp; &nbsp;</div></span>";
-			}
-			$cekRow	=mysqli_query($Open,"SELECT tglakhir FROM m_periode WHERE jenis = 'EDOM'");
-			$row = mysqli_fetch_assoc($cekRow);
-			
-			$wheres = '1';
-			$cKodeprodi = '';
-			$ckelas = '';
-			$_SESSION['pesan'] ="";
+		if (isset($_SESSION['pesan']) && $_SESSION['pesan'] <> '') {
+			echo "<span class='pesan'><div class='btn btn-sm btn-inverse m-b-10'><i class='fa fa-bell text-warning'></i>&nbsp; " . $_SESSION['pesan'] . " &nbsp; &nbsp; &nbsp;</div></span>";
+		}
+		$cekRow	= mysqli_query($Open, "SELECT tglakhir FROM m_periode WHERE jenis = 'EDOM'");
+		$row = mysqli_fetch_assoc($cekRow);
 
-			if(isset($_POST['perta'])){
-				$pertax = $_POST['perta'];
-			}else{
-				$pertax = $_SESSION['perta'];
-			}
+		$wheres = '1';
+		$cKodeprodi = '';
+		$ckelas = '';
+		$_SESSION['pesan'] = "";
+
+		if (isset($_POST['perta'])) {
+			$pertax = $_POST['perta'];
+		} else {
+			$pertax = $_SESSION['perta'];
+		}
 
 		?>
 	</li>
-	
+
 </ol>
 
 
@@ -30,13 +30,13 @@
 <h1 class="page-header">Generate & Backup <small>Generate All ES & Backup Table&nbsp;</small></h1>
 <!-- end page-header -->
 <?php
-	
-	include "../config/koneksi.php";
+
+include "../config/koneksi.php";
 ?>
 <!-- begin row -->
 <div class="row">
 	<!-- begin col-12 -->
-    <div class="col-md-12">
+	<div class="col-md-12">
 		<!-- begin panel -->
 		<div class="panel panel-inverse">
 			<div class="panel-heading">
@@ -48,69 +48,90 @@
 				</div>
 				<h4 class="panel-title">&nbsp;</h4>
 			</div>
-            
+
 			<div class="panel-body">
-				<?php 
-					if(date('Y-m-d') < $row['tglakhir']){
-						echo '
+				<?php
+				if (date('Y-m-d') < $row['tglakhir']) {
+					echo '
 						 <div class="col-md-12 m-b-10 text-center">
 						<p>Generate dan Backup dapat dilakukan pada saat jadwal pengisian kuesioner selesai</p>
 						</div>';
-					}else{
-				 ?>
-	            <div class="col-md-12 m-b-10 text-center">
-	            	<p>Pastikan seluruh jadwal pengisian kuesioner telah selesai</p>
-	    				<a class="btn-sm btn-primary" onclick="generateAllEs()">Generate All Es</a>
-	            </div>
+				} else {
+				?>
+					<div class="col-md-12 m-b-10 text-center">
+						<p>Pastikan seluruh jadwal pengisian kuesioner telah selesai</p>
+						<a class="btn-sm btn-primary" onclick="generateAllEs()">Generate All Es</a>
+					</div>
 
-	            <div class="col-md-12 m-b-20 text-center ">
-	    				<a class="btn-sm btn-primary form" onclick="backupTable()">Backup Table</a>
-	    		
-	            </div>
-             	<div id="contentx" class="col-md-12 m-b-10 text-center">
+					<div class="col-md-12 m-b-20 text-center ">
+						<a class="btn-sm btn-primary form" onclick="backupTable()">Backup Table</a>
 
-             	</div>
-             	<?php } ?>
-	        </div>
+					</div>
+					<div id="contentx" class="col-md-12 m-b-10 text-center">
+
+					</div>
+				<?php } ?>
 			</div>
 		</div>
-		<!-- end panel -->
 	</div>
-    <!-- end col-10 -->
+	<!-- end panel -->
+</div>
+<!-- end col-10 -->
 </div>
 <iframe id="loadarea" style="display:none;"></iframe><br />
 <!-- end row -->
-<script> // 500 = 0,5 s
-	$(document).ready(function(){setTimeout(function(){$(".pesan").fadeIn('slow');}, 500);});
-	setTimeout(function(){$(".pesan").fadeOut('slow');}, 7000);
-	
-	function cariMK(){
+<script>
+	// 500 = 0,5 s
+	$(document).ready(function() {
+		setTimeout(function() {
+			$(".pesan").fadeIn('slow');
+		}, 500);
+	});
+	setTimeout(function() {
+		$(".pesan").fadeOut('slow');
+	}, 7000);
+
+	function cariMK() {
 		var perta = $('#perta').val();
-		$.post("monitoring/edop/master-lookup.php", {jenis:'pilihKodexR3', perta:perta}, function(result){
+		$.post("monitoring/edop/master-lookup.php", {
+			jenis: 'pilihKodexR3',
+			perta: perta
+		}, function(result) {
 			$('#kodex').html(result);
 		});
 	}
 
-	function generateAllEs(){
-         $('.loading').css({'visibility':'visible','display':'inline'});
-         $.post("generateall/generateall.php", {jenis:'generateall'}, function(result){
+	function generateAllEs() {
+		$('.loading').css({
+			'visibility': 'visible',
+			'display': 'inline'
+		});
+		$.post("generateall/generateall.php", {
+			jenis: 'generateall'
+		}, function(result) {
 			$('#contentx').html(result);
-		 });
-    }
+		});
+	}
 
-    function backupTable(){
-         $('.loading').css({'visibility':'visible','display':'inline'});
-         $.post("generateall/backuptable.php", {jenis:'backuptable'}, function(result){
+	function backupTable() {
+		$('.loading').css({
+			'visibility': 'visible',
+			'display': 'inline'
+		});
+		$.post("generateall/backuptable.php", {
+			jenis: 'backuptable'
+		}, function(result) {
 			$('#contentx').html(result);
-		 });
-    }
+		});
+	}
 
-	$(document).ready(function(){
+	$(document).ready(function() {
 		cariMK();
 
-		$('#perta').change(function(){ cariMK(); });
-	 
+		$('#perta').change(function() {
+			cariMK();
+		});
+
 
 	})
-
 </script>
